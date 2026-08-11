@@ -1,5 +1,6 @@
 /* =========================================
    LONG DRIVE WITH HER
+   COMPLETE JAVASCRIPT
 ========================================= */
 
 
@@ -7,92 +8,49 @@
    LIVE INDIAN TIME
 ========================================= */
 
-const timeElement =
-    document.getElementById("time");
-
+const timeElement = document.getElementById("time");
 
 function updateTime() {
 
     const now = new Date();
 
+    const indianTime = new Intl.DateTimeFormat("en-IN", {
+        timeZone: "Asia/Kolkata",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+    }).format(now);
 
-    const indianTime =
-        new Intl.DateTimeFormat(
-            "en-IN",
-            {
-                timeZone: "Asia/Kolkata",
-
-                hour: "2-digit",
-
-                minute: "2-digit",
-
-                second: "2-digit",
-
-                hour12: false
-            }
-        ).format(now);
-
-
-    timeElement.textContent =
-        indianTime;
-
+    timeElement.textContent = indianTime;
 }
-
 
 updateTime();
 
-setInterval(
-    updateTime,
-    1000
-);
+setInterval(updateTime, 1000);
 
 
 /* =========================================
-   DAY / NIGHT
+   DAY / NIGHT MODE
 ========================================= */
 
-const dayBtn =
-    document.getElementById("dayBtn");
-
-const nightBtn =
-    document.getElementById("nightBtn");
-
+const dayBtn = document.getElementById("dayBtn");
+const nightBtn = document.getElementById("nightBtn");
 const backgroundImage =
-    document.getElementById(
-        "backgroundImage"
-    );
-
+    document.getElementById("backgroundImage");
 
 let currentMode = "day";
 
 
-dayBtn.addEventListener(
-    "click",
-    function () {
+function changeBackground(mode) {
 
-        currentMode = "day";
+    backgroundImage.style.opacity = "0";
 
-        document.body.classList.remove(
-            "night"
-        );
+    setTimeout(() => {
 
-        dayBtn.classList.add(
-            "active"
-        );
+        if (mode === "day") {
 
-        nightBtn.classList.remove(
-            "active"
-        );
-
-
-        backgroundImage.style.opacity = "0";
-
-
-        setTimeout(function () {
-
-            if (
-                window.innerWidth <= 700
-            ) {
+            if (window.innerWidth <= 700) {
 
                 backgroundImage.src =
                     "assets/bike-day-mobile.png";
@@ -104,48 +62,9 @@ dayBtn.addEventListener(
 
             }
 
+        } else {
 
-            backgroundImage.onload =
-                function () {
-
-                    backgroundImage.style.opacity =
-                        "1";
-
-                };
-
-        }, 400);
-
-    }
-);
-
-
-nightBtn.addEventListener(
-    "click",
-    function () {
-
-        currentMode = "night";
-
-        document.body.classList.add(
-            "night"
-        );
-
-        nightBtn.classList.add(
-            "active"
-        );
-
-        dayBtn.classList.remove(
-            "active"
-        );
-
-
-        backgroundImage.style.opacity = "0";
-
-
-        setTimeout(function () {
-
-            if (
-                window.innerWidth <= 700
-            ) {
+            if (window.innerWidth <= 700) {
 
                 backgroundImage.src =
                     "assets/bike-night-mobile.png";
@@ -157,23 +76,61 @@ nightBtn.addEventListener(
 
             }
 
+        }
 
-            backgroundImage.onload =
-                function () {
+        backgroundImage.onload = () => {
 
-                    backgroundImage.style.opacity =
-                        "1";
+            backgroundImage.style.opacity = "1";
 
-                };
+        };
 
-        }, 400);
+    }, 400);
+}
 
-    }
-);
+
+dayBtn.addEventListener("click", () => {
+
+    currentMode = "day";
+
+    document.body.classList.remove("night");
+
+    dayBtn.classList.add("active");
+
+    nightBtn.classList.remove("active");
+
+    changeBackground("day");
+
+});
+
+
+nightBtn.addEventListener("click", () => {
+
+    currentMode = "night";
+
+    document.body.classList.add("night");
+
+    nightBtn.classList.add("active");
+
+    dayBtn.classList.remove("active");
+
+    changeBackground("night");
+
+});
 
 
 /* =========================================
-   HINDI QUOTES
+   RESPONSIVE BACKGROUND
+========================================= */
+
+window.addEventListener("resize", () => {
+
+    changeBackground(currentMode);
+
+});
+
+
+/* =========================================
+   HINDI LOVE QUOTES
 ========================================= */
 
 const quotes = [
@@ -196,104 +153,96 @@ const quotes = [
 
     "पहाड़ खूबसूरत हैं, लेकिन तुम्हारे साथ देखे जाएँ तो और भी।",
 
-    "बारिश हो या धूप, रास्ता वही अच्छा है जिस पर तुम साथ चलो।"
+    "बारिश हो या धूप, रास्ता वही अच्छा है जिस पर तुम साथ चलो।",
+
+    "कुछ रास्ते याद बन जाते हैं, जब उन पर तुम साथ होती हो।",
+
+    "जहाँ रास्ता खत्म हो जाए, वहाँ भी तुम्हारा साथ काफी है।"
 
 ];
 
 
-const quote =
-    document.getElementById(
-        "quote"
-    );
+const quoteElement =
+    document.getElementById("quote");
 
 const quoteRefresh =
-    document.getElementById(
-        "quoteRefresh"
-    );
-
+    document.getElementById("quoteRefresh");
 
 let lastQuote = -1;
 
 
-quoteRefresh.addEventListener(
-    "click",
-    function () {
+quoteRefresh.addEventListener("click", () => {
 
-        let random;
+    let randomIndex;
 
+    do {
 
-        do {
+        randomIndex =
+            Math.floor(
+                Math.random() * quotes.length
+            );
 
-            random =
-                Math.floor(
-                    Math.random() *
-                    quotes.length
-                );
-
-        } while (
-            random === lastQuote
-        );
+    } while (
+        randomIndex === lastQuote
+    );
 
 
-        lastQuote = random;
+    lastQuote = randomIndex;
 
 
-        quote.style.opacity = "0";
+    quoteElement.style.opacity = "0";
+
+    quoteElement.style.transform =
+        "translateY(8px)";
 
 
-        setTimeout(
-            function () {
+    setTimeout(() => {
 
-                quote.textContent =
-                    `"${quotes[random]}"`;
+        quoteElement.textContent =
+            `"${quotes[randomIndex]}"`;
 
-                quote.style.opacity =
-                    "1";
+        quoteElement.style.opacity = "1";
 
-            },
-            250
-        );
+        quoteElement.style.transform =
+            "translateY(0)";
 
-    }
-);
+    }, 250);
+
+});
 
 
 /* =========================================
-   YOUTUBE MUSIC PLAYER
+   YOUTUBE PLAYLIST
 ========================================= */
 
 
 /*
-    PUT YOUR YOUTUBE VIDEO IDs HERE.
+    YouTube Video IDs:
 
-    Example YouTube URL:
-
-    https://www.youtube.com/watch?v=ABC123XYZ
-
-    Video ID:
-
-    ABC123XYZ
+    1. H8r_WqDjWaM
+    2. PcThvRYtpgQ
+    3. HhWum37Mg8o
 */
 
 
 const songs = [
 
     {
-        title: "Long Drive",
-        artist: "Artist Name",
-        videoId: "VIDEO_ID_1"
+        title: "Song 1",
+        artist: "YouTube",
+        videoId: "H8r_WqDjWaM"
     },
 
     {
-        title: "Mountain Roads",
-        artist: "Artist Name",
-        videoId: "VIDEO_ID_2"
+        title: "Song 2",
+        artist: "YouTube",
+        videoId: "PcThvRYtpgQ"
     },
 
     {
-        title: "Safar",
-        artist: "Artist Name",
-        videoId: "VIDEO_ID_3"
+        title: "Taare Ginn",
+        artist: "Mohit Chauhan & Shreya Ghoshal",
+        videoId: "HhWum37Mg8o"
     }
 
 ];
@@ -305,48 +254,32 @@ let youtubePlayer = null;
 
 
 /* =========================================
-   ELEMENTS
+   PLAYER ELEMENTS
 ========================================= */
 
 const playBtn =
-    document.getElementById(
-        "playBtn"
-    );
+    document.getElementById("playBtn");
 
 const previousBtn =
-    document.getElementById(
-        "previousBtn"
-    );
+    document.getElementById("previousBtn");
 
 const nextBtn =
-    document.getElementById(
-        "nextBtn"
-    );
+    document.getElementById("nextBtn");
 
 const progress =
-    document.getElementById(
-        "progress"
-    );
+    document.getElementById("progress");
 
 const currentTime =
-    document.getElementById(
-        "currentTime"
-    );
+    document.getElementById("currentTime");
 
 const duration =
-    document.getElementById(
-        "duration"
-    );
+    document.getElementById("duration");
 
 const songTitle =
-    document.getElementById(
-        "songTitle"
-    );
+    document.getElementById("songTitle");
 
 const artistName =
-    document.getElementById(
-        "artistName"
-    );
+    document.getElementById("artistName");
 
 
 /* =========================================
@@ -355,42 +288,39 @@ const artistName =
 
 function onYouTubeIframeAPIReady() {
 
-    youtubePlayer =
-        new YT.Player(
-            "youtube-player",
-            {
+    youtubePlayer = new YT.Player(
+        "youtube-player",
+        {
 
-                width: "200",
+            width: "200",
 
-                height: "200",
+            height: "200",
 
-                videoId:
-                    songs[
-                        currentSong
-                    ].videoId,
+            videoId:
+                songs[currentSong].videoId,
 
-                playerVars: {
+            playerVars: {
 
-                    controls: 1,
+                controls: 1,
 
-                    playsinline: 1,
+                playsinline: 1,
 
-                    rel: 0
+                rel: 0
 
-                },
+            },
 
-                events: {
+            events: {
 
-                    onReady:
-                        onPlayerReady,
+                onReady:
+                    onPlayerReady,
 
-                    onStateChange:
-                        onPlayerStateChange
-
-                }
+                onStateChange:
+                    onPlayerStateChange
 
             }
-        );
+
+        }
+    );
 
 }
 
@@ -401,7 +331,7 @@ function onYouTubeIframeAPIReady() {
 
 function onPlayerReady() {
 
-    updateSongInfo();
+    updateSongInformation();
 
     updateDuration();
 
@@ -409,12 +339,24 @@ function onPlayerReady() {
 
 
 /* =========================================
-   STATE CHANGE
+   PLAYER STATE
 ========================================= */
 
-function onPlayerStateChange(
-    event
-) {
+function onPlayerStateChange(event) {
+
+    /*
+
+        YT.PlayerState values:
+
+        -1 = Unstarted
+         0 = Ended
+         1 = Playing
+         2 = Paused
+         3 = Buffering
+         5 = Video cued
+
+    */
+
 
     if (
         event.data ===
@@ -452,38 +394,37 @@ function onPlayerStateChange(
    PLAY / PAUSE
 ========================================= */
 
-playBtn.addEventListener(
-    "click",
-    function () {
+playBtn.addEventListener("click", () => {
 
-        if (!youtubePlayer) {
-            return;
-        }
+    if (!youtubePlayer) {
 
-
-        const state =
-            youtubePlayer.getPlayerState();
-
-
-        if (
-            state ===
-            YT.PlayerState.PLAYING
-        ) {
-
-            youtubePlayer.pauseVideo();
-
-        } else {
-
-            youtubePlayer.playVideo();
-
-        }
+        return;
 
     }
-);
+
+
+    const state =
+        youtubePlayer.getPlayerState();
+
+
+    if (
+        state ===
+        YT.PlayerState.PLAYING
+    ) {
+
+        youtubePlayer.pauseVideo();
+
+    } else {
+
+        youtubePlayer.playVideo();
+
+    }
+
+});
 
 
 /* =========================================
-   NEXT
+   NEXT SONG
 ========================================= */
 
 nextBtn.addEventListener(
@@ -494,7 +435,15 @@ nextBtn.addEventListener(
 
 function nextSong() {
 
+    if (!youtubePlayer) {
+
+        return;
+
+    }
+
+
     currentSong++;
+
 
     if (
         currentSong >=
@@ -506,15 +455,13 @@ function nextSong() {
     }
 
 
-    loadSong(
-        currentSong
-    );
+    loadSong(currentSong);
 
 }
 
 
 /* =========================================
-   PREVIOUS
+   PREVIOUS SONG
 ========================================= */
 
 previousBtn.addEventListener(
@@ -525,11 +472,17 @@ previousBtn.addEventListener(
 
 function previousSong() {
 
+    if (!youtubePlayer) {
+
+        return;
+
+    }
+
+
     currentSong--;
 
-    if (
-        currentSong < 0
-    ) {
+
+    if (currentSong < 0) {
 
         currentSong =
             songs.length - 1;
@@ -537,9 +490,7 @@ function previousSong() {
     }
 
 
-    loadSong(
-        currentSong
-    );
+    loadSong(currentSong);
 
 }
 
@@ -551,13 +502,17 @@ function previousSong() {
 function loadSong(index) {
 
     if (!youtubePlayer) {
+
         return;
+
     }
 
 
     const song =
         songs[index];
 
+
+    /* Update text */
 
     songTitle.textContent =
         song.title;
@@ -567,16 +522,18 @@ function loadSong(index) {
         song.artist;
 
 
-    progress.value = 0;
+    /* Reset progress */
 
+    progress.value = 0;
 
     currentTime.textContent =
         "0:00";
 
-
     duration.textContent =
         "0:00";
 
+
+    /* Load YouTube video */
 
     youtubePlayer.loadVideoById(
         song.videoId
@@ -586,86 +543,113 @@ function loadSong(index) {
 
 
 /* =========================================
-   SONG INFO
+   UPDATE SONG INFORMATION
 ========================================= */
 
-const songs = [
+function updateSongInformation() {
 
-    {
-        title: "Song 1",
-        artist: "YouTube",
-        videoId: "H8r_WqDjWaM"
-    },
+    const song =
+        songs[currentSong];
 
-    {
-        title: "Song 2",
-        artist: "YouTube",
-        videoId: "PcThvRYtpgQ"
-    },
 
-    {
-        title: "Song 3",
-        artist: "YouTube",
-        videoId: "HhWum37Mg8o"
-    }
+    songTitle.textContent =
+        song.title;
 
-];
+
+    artistName.textContent =
+        song.artist;
+
+}
 
 
 /* =========================================
-   PROGRESS UPDATE
+   UPDATE DURATION
 ========================================= */
 
-setInterval(
-    function () {
+function updateDuration() {
 
-        if (!youtubePlayer) {
-            return;
-        }
+    if (!youtubePlayer) {
 
+        return;
 
-        const total =
-            youtubePlayer.getDuration();
+    }
 
 
-        const current =
-            youtubePlayer.getCurrentTime();
+    const total =
+        youtubePlayer.getDuration();
 
 
-        if (!total) {
-            return;
-        }
-
-
-        progress.value =
-            (
-                current /
-                total
-            ) * 100;
-
-
-        currentTime.textContent =
-            formatTime(current);
-
+    if (total) {
 
         duration.textContent =
             formatTime(total);
 
-    },
-    500
-);
+    }
+
+}
 
 
 /* =========================================
-   SEEK
+   PROGRESS BAR
+========================================= */
+
+setInterval(() => {
+
+    if (!youtubePlayer) {
+
+        return;
+
+    }
+
+
+    const total =
+        youtubePlayer.getDuration();
+
+
+    const current =
+        youtubePlayer.getCurrentTime();
+
+
+    if (!total) {
+
+        return;
+
+    }
+
+
+    const percentage =
+        (
+            current /
+            total
+        ) * 100;
+
+
+    progress.value =
+        percentage;
+
+
+    currentTime.textContent =
+        formatTime(current);
+
+
+    duration.textContent =
+        formatTime(total);
+
+}, 500);
+
+
+/* =========================================
+   SEEK THROUGH SONG
 ========================================= */
 
 progress.addEventListener(
     "input",
-    function () {
+    () => {
 
         if (!youtubePlayer) {
+
             return;
+
         }
 
 
@@ -674,7 +658,9 @@ progress.addEventListener(
 
 
         if (!total) {
+
             return;
+
         }
 
 
@@ -716,7 +702,7 @@ function formatTime(seconds) {
         );
 
 
-    const secondsLeft =
+    const remainingSeconds =
         Math.floor(
             seconds % 60
         );
@@ -726,7 +712,7 @@ function formatTime(seconds) {
         minutes +
         ":" +
         String(
-            secondsLeft
+            remainingSeconds
         ).padStart(2, "0")
     );
 
@@ -737,13 +723,11 @@ function formatTime(seconds) {
    MOUSE PARALLAX
 ========================================= */
 
-if (
-    window.innerWidth > 700
-) {
+if (window.innerWidth > 700) {
 
     document.addEventListener(
         "mousemove",
-        function (event) {
+        (event) => {
 
             const x =
                 (
@@ -768,3 +752,49 @@ if (
     );
 
 }
+
+
+/* =========================================
+   KEYBOARD CONTROLS
+========================================= */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        /* Space = Play / Pause */
+
+        if (
+            event.code === "Space"
+        ) {
+
+            event.preventDefault();
+
+            playBtn.click();
+
+        }
+
+
+        /* Right arrow = Next */
+
+        if (
+            event.code === "ArrowRight"
+        ) {
+
+            nextBtn.click();
+
+        }
+
+
+        /* Left arrow = Previous */
+
+        if (
+            event.code === "ArrowLeft"
+        ) {
+
+            previousBtn.click();
+
+        }
+
+    }
+);
