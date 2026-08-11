@@ -10,20 +10,35 @@
         content="width=device-width, initial-scale=1.0"
     >
 
+    <meta
+        name="description"
+        content="Long Drive With Her — a cinematic journey."
+    >
+
     <title>Long Drive With Her</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <!-- GOOGLE FONTS -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
 
     <link rel="preconnect"
           href="https://fonts.gstatic.com"
           crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400;1,500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap"
         rel="stylesheet"
     >
 
-    <link rel="stylesheet" href="style.css">
+
+    <!-- CSS -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 
 </head>
 
@@ -31,256 +46,374 @@
 <body>
 
 
-<main class="experience">
+    <!-- =====================================
+         MAIN WEBSITE
+    ====================================== -->
+
+    <main class="experience">
 
 
-    <!-- BACKGROUND -->
+        <!-- =================================
+             BACKGROUND
+        ================================== -->
 
-    <div class="background">
+        <div class="background">
 
-        <img
-            id="backgroundImage"
-            src="assets/bike-day-desktop.png"
-            alt="Motorcycle ride through the mountains"
-        >
-
-    </div>
-
-
-    <div class="cinematic-overlay"></div>
-
-    <div class="film-grain"></div>
-
-
-    <!-- CLOCK -->
-
-    <div class="clock">
-
-        <div id="time" class="time">
-            00:00:00
-        </div>
-
-        <div class="location">
-            INDIA · IST
-        </div>
-
-    </div>
-
-
-    <!-- DAY / NIGHT -->
-
-    <div class="mode-switch">
-
-        <button
-            id="dayBtn"
-            class="mode active"
-        >
-            ☀ DAY
-        </button>
-
-        <button
-            id="nightBtn"
-            class="mode"
-        >
-            ☾ NIGHT
-        </button>
-
-    </div>
-
-
-    <!-- CENTER -->
-
-    <section class="center-content">
-
-        <div class="small-label">
-            A JOURNEY FOR TWO
-        </div>
-
-
-        <h1>
-
-            <span class="title-main">
-                LONG DRIVE
-            </span>
-
-            <span class="title-italic">
-                WITH HER
-            </span>
-
-        </h1>
-
-
-        <div class="divider">
-
-            <span></span>
-
-            <small>♡</small>
-
-            <span></span>
+            <img
+                id="backgroundImage"
+                src="assets/bike-day-desktop.png"
+                alt="Motorcycle ride"
+            >
 
         </div>
 
 
-        <p class="tagline">
-            one road · two hearts · endless miles
-        </p>
+        <!-- CINEMATIC DARK OVERLAY -->
+
+        <div class="cinematic-overlay"></div>
 
 
-        <!-- MUSIC -->
+        <!-- FILM GRAIN -->
 
-        <div class="music-player">
+        <div class="film-grain"></div>
 
 
-            <div class="now-playing">
-                NOW PLAYING
+        <!-- =================================
+             LIVE CLOCK
+        ================================== -->
+
+        <div class="clock">
+
+            <div
+                id="time"
+                class="time"
+            >
+                00:00:00
             </div>
 
 
-            <!-- ACTUAL YOUTUBE PLAYER -->
+            <div class="location">
 
-            <div class="youtube-wrapper">
+                INDIA · IST
 
-                <div id="youtube-player"></div>
+            </div>
+
+        </div>
+
+
+        <!-- =================================
+             DAY / NIGHT
+        ================================== -->
+
+        <div class="mode-switch">
+
+
+            <button
+                id="dayBtn"
+                class="mode active"
+                type="button"
+            >
+
+                ☀ DAY
+
+            </button>
+
+
+            <button
+                id="nightBtn"
+                class="mode"
+                type="button"
+            >
+
+                ☾ NIGHT
+
+            </button>
+
+
+        </div>
+
+
+        <!-- =================================
+             CENTER CONTENT
+        ================================== -->
+
+        <section class="center-content">
+
+
+            <div class="small-label">
+
+                A JOURNEY FOR TWO
 
             </div>
 
 
-            <!-- SONG INFORMATION -->
-
-            <div class="music-info">
-
-                <div class="album-art">
-                    ♪
-                </div>
-
-                <div class="song-details">
-
-                    <div
-                        id="songTitle"
-                        class="song-title"
-                    >
-                        Select a song
-                    </div>
-
-                    <div
-                        id="artistName"
-                        class="artist"
-                    >
-                        YouTube
-                    </div>
-
-                </div>
-
-            </div>
+            <h1>
 
 
-            <!-- PROGRESS -->
+                <span class="title-main">
 
-            <div class="progress-area">
+                    LONG DRIVE
 
-                <span id="currentTime">
-                    0:00
                 </span>
 
-                <input
-                    id="progress"
-                    class="progress"
-                    type="range"
-                    min="0"
-                    max="100"
-                    value="0"
-                >
 
-                <span id="duration">
-                    0:00
+                <span class="title-italic">
+
+                    WITH HER
+
                 </span>
 
-            </div>
+
+            </h1>
 
 
-            <!-- CONTROLS -->
+            <!-- DIVIDER -->
 
-            <div class="music-controls">
+            <div class="divider">
 
-                <button
-                    id="previousBtn"
-                    type="button"
-                >
-                    ◀
-                </button>
+                <span></span>
 
+                <small>♡</small>
 
-                <button
-                    id="playBtn"
-                    class="play-button"
-                    type="button"
-                >
-                    ▶
-                </button>
-
-
-                <button
-                    id="nextBtn"
-                    type="button"
-                >
-                    ▶
-                </button>
+                <span></span>
 
             </div>
 
 
+            <!-- TAGLINE -->
+
+            <p class="tagline">
+
+                one road · two hearts · endless miles
+
+            </p>
+
+
+            <!-- =================================
+                 MUSIC PLAYER
+            ================================== -->
+
+            <div class="music-player">
+
+
+                <div class="now-playing">
+
+                    NOW PLAYING
+
+                </div>
+
+
+                <!-- YOUTUBE PLAYER -->
+
+                <div class="youtube-wrapper">
+
+                    <div id="youtube-player"></div>
+
+                </div>
+
+
+                <!-- SONG INFORMATION -->
+
+                <div class="music-info">
+
+
+                    <div class="album-art">
+
+                        ♪
+
+                    </div>
+
+
+                    <div class="song-details">
+
+
+                        <div
+                            id="songTitle"
+                            class="song-title"
+                        >
+
+                            Song 1
+
+                        </div>
+
+
+                        <div
+                            id="artistName"
+                            class="artist"
+                        >
+
+                            YouTube
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- PROGRESS -->
+
+                <div class="progress-area">
+
+
+                    <span
+                        id="currentTime"
+                        class="music-time"
+                    >
+
+                        0:00
+
+                    </span>
+
+
+                    <input
+                        id="progress"
+                        class="progress"
+                        type="range"
+                        min="0"
+                        max="100"
+                        value="0"
+                    >
+
+
+                    <span
+                        id="duration"
+                        class="music-time"
+                    >
+
+                        0:00
+
+                    </span>
+
+
+                </div>
+
+
+                <!-- CUSTOM CONTROLS -->
+
+                <div class="music-controls">
+
+
+                    <button
+                        id="previousBtn"
+                        type="button"
+                        aria-label="Previous song"
+                    >
+
+                        ◀
+
+                    </button>
+
+
+                    <button
+                        id="playBtn"
+                        class="play-button"
+                        type="button"
+                        aria-label="Play or pause"
+                    >
+
+                        ▶
+
+                    </button>
+
+
+                    <button
+                        id="nextBtn"
+                        type="button"
+                        aria-label="Next song"
+                    >
+
+                        ▶
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =================================
+             LOVE QUOTE
+        ================================== -->
+
+        <div class="quote-box">
+
+
+            <button
+                id="quoteRefresh"
+                class="quote-refresh"
+                type="button"
+                aria-label="New quote"
+            >
+
+                ↻
+
+            </button>
+
+
+            <div
+                id="quote"
+                class="quote"
+            >
+
+                "कुछ रास्ते मंज़िल के लिए नहीं,
+                किसी के साथ चलने के लिए होते हैं।"
+
+            </div>
+
+
+            <div class="quote-author">
+
+                — cinesutrachitra
+
+            </div>
+
+
         </div>
 
-    </section>
 
+        <!-- =================================
+             SIGNATURE
+        ================================== -->
 
-    <!-- QUOTE -->
+        <div class="signature">
 
-    <div class="quote-box">
-
-        <button
-            id="quoteRefresh"
-            class="quote-refresh"
-        >
-            ↻
-        </button>
-
-
-        <div id="quote" class="quote">
-
-            "कुछ रास्ते मंज़िल के लिए नहीं,
-            किसी के साथ चलने के लिए होते हैं।"
+            cinesutrachitra
 
         </div>
 
 
-        <div class="quote-author">
-            — cinesutrachitra
+        <!-- BOTTOM TEXT -->
+
+        <div class="bottom-note">
+
+            KEEP RIDING · KEEP LOVING
+
         </div>
 
-    </div>
+
+    </main>
 
 
-    <!-- SIGNATURE -->
+    <!-- =====================================
+         YOUTUBE IFRAME API
+    ====================================== -->
 
-    <div class="signature">
-        cinesutrachitra
-    </div>
-
-
-    <div class="bottom-note">
-        KEEP RIDING · KEEP LOVING
-    </div>
+    <script
+        src="https://www.youtube.com/iframe_api">
+    </script>
 
 
-</main>
+    <!-- JAVASCRIPT -->
 
-
-<!-- YOUTUBE IFRAME API -->
-
-<script src="https://www.youtube.com/iframe_api"></script>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 
 </body>
