@@ -1007,131 +1007,157 @@ body.night .mode.active {
    MOBILE
 ========================================= */
 
+/* =========================================
+   RESPONSIVE MOBILE DESIGN
+========================================= */
+
 @media (max-width: 700px) {
 
-
     body {
-
         overflow: hidden;
-
     }
-
 
     .experience {
-
-        min-height: 100svh;
-
+        width: 100%;
+        height: 100svh;
+        min-height: 520px;
+        overflow: hidden;
     }
 
 
-    /* MOBILE IMAGE */
+    /* ==============================
+       MOBILE BACKGROUND
+    ============================== */
 
     .background img {
+        content: url("assets/bike-day-mobile.png");
 
-        content:
-            url("assets/bike-day-mobile.png");
+        width: 100%;
+        height: 100%;
 
-        object-position:
-            center center;
+        object-fit: cover;
+        object-position: center center;
 
+        transform: scale(1.02);
     }
-
 
     body.night .background img {
-
-        content:
-            url("assets/bike-night-mobile.png");
-
+        content: url("assets/bike-night-mobile.png");
     }
 
 
-    /* CLOCK */
+    /* ==============================
+       OVERLAY
+    ============================== */
+
+    .cinematic-overlay {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(0,0,0,0.42) 0%,
+                rgba(0,0,0,0.05) 35%,
+                rgba(0,0,0,0.25) 65%,
+                rgba(0,0,0,0.78) 100%
+            );
+    }
+
+
+    /* ==============================
+       CLOCK
+    ============================== */
 
     .clock {
-
-        top: 20px;
-
-        left: 20px;
-
+        top: 15px;
+        left: 15px;
     }
-
 
     .time {
-
-        font-size: 17px;
-
-        letter-spacing: 3px;
-
+        font-size: clamp(13px, 4vw, 18px);
+        letter-spacing: 2px;
     }
-
 
     .location {
+        margin-top: 6px;
+        padding-top: 5px;
 
-        margin-top: 8px;
-
-        padding-top: 7px;
-
-        font-size: 7px;
-
-        letter-spacing: 3px;
-
+        font-size: 6px;
+        letter-spacing: 2px;
     }
 
 
-    /* MODE */
+    /* ==============================
+       DAY / NIGHT
+    ============================== */
 
     .mode-switch {
+        top: 12px;
+        right: 12px;
 
-        top: 17px;
+        padding: 3px;
 
-        right: 15px;
-
+        border-radius: 30px;
     }
-
 
     .mode {
+        padding: 7px 9px;
 
-        padding:
-            8px 10px;
+        font-size: 7px;
+        letter-spacing: 1px;
+    }
 
-        font-size: 8px;
-
+    .mode span {
+        margin-right: 3px;
+        font-size: 9px;
     }
 
 
-    /* CENTER */
+    /* ==============================
+       CENTER CONTENT
+    ============================== */
 
     .center-content {
 
+        position: absolute;
+
+        top: 46%;
+
+        left: 50%;
+
         width: 92vw;
 
-        top: 48%;
+        max-width: 430px;
 
+        transform:
+            translate(-50%, -50%);
     }
 
 
     .small-label {
 
-        font-size: 7px;
+        margin-bottom: 9px;
 
-        letter-spacing: 4px;
+        font-size: 6px;
 
-        margin-bottom: 13px;
-
+        letter-spacing: 3px;
     }
 
+
+    /* ==============================
+       TITLE
+    ============================== */
 
     .title-main {
 
         font-size:
             clamp(
-                42px,
-                12vw,
-                65px
+                34px,
+                10.5vw,
+                52px
             );
 
-        letter-spacing: -3px;
+        line-height: 0.9;
 
+        letter-spacing: -2px;
     }
 
 
@@ -1139,185 +1165,425 @@ body.night .mode.active {
 
         font-size:
             clamp(
-                40px,
-                11vw,
-                62px
+                32px,
+                9.8vw,
+                50px
             );
 
-        letter-spacing: -2px;
+        line-height: 0.95;
 
+        letter-spacing: -1.5px;
     }
 
+
+    /* ==============================
+       DIVIDER
+    ============================== */
 
     .divider {
 
-        margin-top: 15px;
+        width: 55vw;
 
-        width: 65vw;
+        max-width: 240px;
 
+        margin:
+            11px auto 7px;
+
+        gap: 8px;
     }
 
+    .divider small {
+        font-size: 10px;
+    }
+
+
+    /* ==============================
+       TAGLINE
+    ============================== */
 
     .tagline {
 
-        font-size: 7px;
+        font-size: 6px;
 
-        letter-spacing: 3px;
+        letter-spacing: 2px;
 
+        white-space: nowrap;
     }
 
 
-    /* MUSIC */
+    /* ==============================
+       MUSIC PLAYER
+    ============================== */
 
     .music-player {
 
         width: 88vw;
 
+        max-width: 350px;
+
+        margin:
+            14px auto 0;
+
         padding:
-            14px 15px 12px;
+            10px 12px 9px;
 
-        margin-top: 20px;
+        border-radius: 12px;
+    }
 
-        border-radius: 15px;
 
+    .now-playing {
+
+        margin-bottom: 7px;
+
+        font-size: 6px;
+
+        letter-spacing: 3px;
+    }
+
+
+    .music-info {
+
+        min-height: 32px;
     }
 
 
     .album-art {
 
-        width: 40px;
+        width: 34px;
 
-        height: 40px;
+        height: 34px;
 
+        border-radius: 6px;
+
+        font-size: 15px;
+    }
+
+
+    .song-details {
+
+        margin-left: 9px;
     }
 
 
     .song-title {
 
-        font-size: 12px;
-
+        font-size: 10px;
     }
 
 
     .artist {
 
-        font-size: 9px;
+        margin-top: 2px;
 
+        font-size: 7px;
     }
 
 
-    /* QUOTE */
+    /* ==============================
+       PROGRESS BAR
+    ============================== */
+
+    .progress-area {
+
+        margin-top: 7px;
+
+        gap: 6px;
+    }
+
+
+    .music-time {
+
+        min-width: 22px;
+
+        font-size: 6px;
+    }
+
+
+    .progress {
+
+        height: 2px;
+    }
+
+
+    .progress::-webkit-slider-thumb {
+
+        width: 7px;
+        height: 7px;
+    }
+
+
+    .progress::-moz-range-thumb {
+
+        width: 7px;
+        height: 7px;
+    }
+
+
+    /* ==============================
+       MUSIC BUTTONS
+    ============================== */
+
+    .music-controls {
+
+        margin-top: 7px;
+
+        gap: 17px;
+    }
+
+
+    .music-controls button {
+
+        font-size: 9px;
+    }
+
+
+    .play-button {
+
+        width: 28px;
+
+        height: 28px;
+
+        font-size: 8px !important;
+    }
+
+
+    /* ==============================
+       QUOTE
+    ============================== */
 
     .quote-box {
 
-        left: 20px;
+        left: 15px;
 
-        bottom: 28px;
+        bottom: 18px;
 
-        width: 65vw;
+        width: 58vw;
 
+        max-width: 250px;
     }
 
 
     .quote {
 
-        font-size: 13px;
+        font-size:
+            clamp(
+                9px,
+                2.8vw,
+                12px
+            );
 
         line-height: 1.45;
-
     }
 
 
     .quote-author {
 
-        font-size: 10px;
+        margin-top: 4px;
 
-        margin-top: 6px;
-
+        font-size: 8px;
     }
 
+
+    /* ==============================
+       REFRESH BUTTON
+    ============================== */
 
     .quote-refresh {
 
         left: auto;
 
-        right: -40px;
+        right: -35px;
 
         bottom: 0;
 
-        transform: none;
+        width: 26px;
 
+        height: 26px;
+
+        font-size: 13px;
+
+        transform: none;
     }
 
 
     .quote-refresh:hover {
 
         transform: rotate(180deg);
-
     }
 
 
-    /* SIGNATURE */
+    /* ==============================
+       SIGNATURE
+    ============================== */
 
     .signature {
 
-        right: 20px;
+        right: 15px;
 
-        bottom: 24px;
+        bottom: 18px;
 
-        font-size: 14px;
+        font-size: 11px;
 
+        letter-spacing: 0.5px;
     }
 
 
+    /* ==============================
+       HIDE BOTTOM NOTE
+    ============================== */
+
     .bottom-note {
-
         display: none;
-
     }
 
 }
 
 
 /* =========================================
-   VERY SMALL PHONES
+   EXTRA SMALL PHONES
+   320px – 360px
 ========================================= */
 
-@media (max-width: 380px) {
+@media (max-width: 360px) {
+
+    .clock {
+        top: 12px;
+        left: 12px;
+    }
+
+    .time {
+        font-size: 12px;
+    }
+
+    .location {
+        font-size: 5px;
+    }
+
+
+    .mode-switch {
+        top: 10px;
+        right: 9px;
+    }
+
+    .mode {
+        padding: 6px 7px;
+        font-size: 6px;
+    }
 
 
     .center-content {
+        top: 45%;
+        width: 94vw;
+    }
 
-        top: 47%;
 
+    .title-main {
+        font-size: 31px;
+    }
+
+    .title-italic {
+        font-size: 29px;
+    }
+
+
+    .tagline {
+        font-size: 5px;
+        letter-spacing: 1.5px;
     }
 
 
     .music-player {
+        width: 90vw;
 
-        margin-top: 15px;
+        margin-top: 11px;
 
+        padding: 8px 10px;
+    }
+
+
+    .album-art {
+        width: 30px;
+        height: 30px;
+    }
+
+
+    .song-title {
+        font-size: 9px;
+    }
+
+
+    .artist {
+        font-size: 6px;
+    }
+
+
+    .music-controls {
+        gap: 13px;
+    }
+
+
+    .play-button {
+        width: 25px;
+        height: 25px;
     }
 
 
     .quote-box {
-
-        bottom: 20px;
-
+        bottom: 15px;
+        width: 60vw;
     }
 
 
     .quote {
+        font-size: 8px;
+    }
 
-        font-size: 11px;
 
+    .quote-author {
+        font-size: 7px;
     }
 
 
     .signature {
+        right: 12px;
+        bottom: 15px;
+        font-size: 9px;
+    }
 
-        font-size: 12px;
+}
 
+
+/* =========================================
+   TALL PHONES
+   700px+ HEIGHT
+========================================= */
+
+@media (max-width: 700px) and (min-height: 750px) {
+
+    .center-content {
+        top: 45%;
+    }
+
+    .title-main {
+        font-size:
+            clamp(
+                38px,
+                10.5vw,
+                56px
+            );
+    }
+
+    .title-italic {
+        font-size:
+            clamp(
+                36px,
+                10vw,
+                54px
+            );
+    }
+
+    .music-player {
+        margin-top: 17px;
     }
 
 }
