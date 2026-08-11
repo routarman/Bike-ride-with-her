@@ -8,129 +8,269 @@
    LIVE INDIAN TIME
 ========================================= */
 
-const timeElement = document.getElementById("time");
+function updateIndianClock() {
 
-function updateTime() {
+    const clock =
+        document.getElementById("time");
+
+
+    if (!clock) {
+
+        return;
+
+    }
+
 
     const now = new Date();
 
-    const indianTime = new Intl.DateTimeFormat("en-IN", {
-        timeZone: "Asia/Kolkata",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false
-    }).format(now);
 
-    timeElement.textContent = indianTime;
-}
+    const parts =
+        new Intl.DateTimeFormat(
+            "en-IN",
+            {
+                timeZone:
+                    "Asia/Kolkata",
 
-updateTime();
+                hour:
+                    "2-digit",
 
-setInterval(updateTime, 1000);
+                minute:
+                    "2-digit",
 
+                second:
+                    "2-digit",
 
-/* =========================================
-   DAY / NIGHT MODE
-========================================= */
-
-const dayBtn = document.getElementById("dayBtn");
-const nightBtn = document.getElementById("nightBtn");
-const backgroundImage =
-    document.getElementById("backgroundImage");
-
-let currentMode = "day";
+                hour12:
+                    false
+            }
+        ).formatToParts(now);
 
 
-function changeBackground(mode) {
+    let hours = "00";
 
-    backgroundImage.style.opacity = "0";
+    let minutes = "00";
 
-    setTimeout(() => {
+    let seconds = "00";
 
-        if (mode === "day") {
 
-            if (window.innerWidth <= 700) {
+    parts.forEach(
+        function (part) {
 
-                backgroundImage.src =
-                    "assets/bike-day-mobile.png";
+            if (
+                part.type === "hour"
+            ) {
 
-            } else {
-
-                backgroundImage.src =
-                    "assets/bike-day-desktop.png";
+                hours =
+                    part.value;
 
             }
 
-        } else {
 
-            if (window.innerWidth <= 700) {
+            if (
+                part.type === "minute"
+            ) {
 
-                backgroundImage.src =
-                    "assets/bike-night-mobile.png";
+                minutes =
+                    part.value;
 
-            } else {
+            }
 
-                backgroundImage.src =
-                    "assets/bike-night-desktop.png";
+
+            if (
+                part.type === "second"
+            ) {
+
+                seconds =
+                    part.value;
 
             }
 
         }
+    );
 
-        backgroundImage.onload = () => {
 
-            backgroundImage.style.opacity = "1";
+    clock.textContent =
+        `${hours}:${minutes}:${seconds}`;
 
-        };
-
-    }, 400);
 }
 
 
-dayBtn.addEventListener("click", () => {
-
-    currentMode = "day";
-
-    document.body.classList.remove("night");
-
-    dayBtn.classList.add("active");
-
-    nightBtn.classList.remove("active");
-
-    changeBackground("day");
-
-});
+updateIndianClock();
 
 
-nightBtn.addEventListener("click", () => {
-
-    currentMode = "night";
-
-    document.body.classList.add("night");
-
-    nightBtn.classList.add("active");
-
-    dayBtn.classList.remove("active");
-
-    changeBackground("night");
-
-});
+setInterval(
+    updateIndianClock,
+    1000
+);
 
 
 /* =========================================
-   RESPONSIVE BACKGROUND
+   DAY / NIGHT
 ========================================= */
 
-window.addEventListener("resize", () => {
+const dayBtn =
+    document.getElementById(
+        "dayBtn"
+    );
 
-    changeBackground(currentMode);
+const nightBtn =
+    document.getElementById(
+        "nightBtn"
+    );
 
-});
+const backgroundImage =
+    document.getElementById(
+        "backgroundImage"
+    );
+
+
+let currentMode =
+    "day";
+
+
+function setBackground(
+    mode
+) {
+
+    if (!backgroundImage) {
+
+        return;
+
+    }
+
+
+    backgroundImage.style.opacity =
+        "0";
+
+
+    setTimeout(
+        function () {
+
+
+            if (
+                mode === "day"
+            ) {
+
+
+                if (
+                    window.innerWidth <= 700
+                ) {
+
+                    backgroundImage.src =
+                        "assets/bike-day-mobile.png";
+
+                } else {
+
+                    backgroundImage.src =
+                        "assets/bike-day-desktop.png";
+
+                }
+
+
+            } else {
+
+
+                if (
+                    window.innerWidth <= 700
+                ) {
+
+                    backgroundImage.src =
+                        "assets/bike-night-mobile.png";
+
+                } else {
+
+                    backgroundImage.src =
+                        "assets/bike-night-desktop.png";
+
+                }
+
+            }
+
+
+            backgroundImage.onload =
+                function () {
+
+                    backgroundImage.style.opacity =
+                        "1";
+
+                };
+
+
+        },
+        350
+    );
+
+}
+
+
+/* DAY */
+
+dayBtn.addEventListener(
+    "click",
+    function () {
+
+        currentMode =
+            "day";
+
+
+        document.body.classList.remove(
+            "night"
+        );
+
+
+        dayBtn.classList.add(
+            "active"
+        );
+
+
+        nightBtn.classList.remove(
+            "active"
+        );
+
+
+        setBackground(
+            "day"
+        );
+
+    }
+);
+
+
+/* NIGHT */
+
+nightBtn.addEventListener(
+    "click",
+    function () {
+
+        currentMode =
+            "night";
+
+
+        document.body.classList.add(
+            "night"
+        );
+
+
+        nightBtn.classList.add(
+            "active"
+        );
+
+
+        dayBtn.classList.remove(
+            "active"
+        );
+
+
+        setBackground(
+            "night"
+        );
+
+    }
+);
 
 
 /* =========================================
-   HINDI LOVE QUOTES
+   HINDI QUOTES
 ========================================= */
 
 const quotes = [
@@ -163,52 +303,78 @@ const quotes = [
 
 
 const quoteElement =
-    document.getElementById("quote");
-
-const quoteRefresh =
-    document.getElementById("quoteRefresh");
-
-let lastQuote = -1;
-
-
-quoteRefresh.addEventListener("click", () => {
-
-    let randomIndex;
-
-    do {
-
-        randomIndex =
-            Math.floor(
-                Math.random() * quotes.length
-            );
-
-    } while (
-        randomIndex === lastQuote
+    document.getElementById(
+        "quote"
     );
 
 
-    lastQuote = randomIndex;
+const quoteRefresh =
+    document.getElementById(
+        "quoteRefresh"
+    );
 
 
-    quoteElement.style.opacity = "0";
-
-    quoteElement.style.transform =
-        "translateY(8px)";
+let lastQuote =
+    -1;
 
 
-    setTimeout(() => {
+quoteRefresh.addEventListener(
+    "click",
+    function () {
 
-        quoteElement.textContent =
-            `"${quotes[randomIndex]}"`;
 
-        quoteElement.style.opacity = "1";
+        let randomIndex;
+
+
+        do {
+
+            randomIndex =
+                Math.floor(
+                    Math.random() *
+                    quotes.length
+                );
+
+
+        } while (
+            randomIndex ===
+            lastQuote
+        );
+
+
+        lastQuote =
+            randomIndex;
+
+
+        quoteElement.style.opacity =
+            "0";
+
 
         quoteElement.style.transform =
-            "translateY(0)";
+            "translateY(8px)";
 
-    }, 250);
 
-});
+        setTimeout(
+            function () {
+
+
+                quoteElement.textContent =
+                    `"${quotes[randomIndex]}"`;
+
+
+                quoteElement.style.opacity =
+                    "1";
+
+
+                quoteElement.style.transform =
+                    "translateY(0)";
+
+
+            },
+            250
+        );
+
+    }
+);
 
 
 /* =========================================
@@ -217,40 +383,68 @@ quoteRefresh.addEventListener("click", () => {
 
 
 /*
-    YouTube Video IDs:
+    YOUR THREE YOUTUBE VIDEOS
 
-    1. H8r_WqDjWaM
-    2. PcThvRYtpgQ
-    3. HhWum37Mg8o
+    1:
+    H8r_WqDjWaM
+
+    2:
+    PcThvRYtpgQ
+
+    3:
+    HhWum37Mg8o
 */
 
 
 const songs = [
 
     {
-        title: "Song 1",
-        artist: "YouTube",
-        videoId: "H8r_WqDjWaM"
+        title:
+            "Song 1",
+
+        artist:
+            "YouTube",
+
+        videoId:
+            "H8r_WqDjWaM"
+
     },
 
-    {
-        title: "Song 2",
-        artist: "YouTube",
-        videoId: "PcThvRYtpgQ"
-    },
 
     {
-        title: "Taare Ginn",
-        artist: "Mohit Chauhan & Shreya Ghoshal",
-        videoId: "HhWum37Mg8o"
+        title:
+            "Song 2",
+
+        artist:
+            "YouTube",
+
+        videoId:
+            "PcThvRYtpgQ"
+
+    },
+
+
+    {
+        title:
+            "Taare Ginn",
+
+        artist:
+            "Mohit Chauhan & Shreya Ghoshal",
+
+        videoId:
+            "HhWum37Mg8o"
+
     }
 
 ];
 
 
-let currentSong = 0;
+let currentSong =
+    0;
 
-let youtubePlayer = null;
+
+let youtubePlayer =
+    null;
 
 
 /* =========================================
@@ -258,69 +452,120 @@ let youtubePlayer = null;
 ========================================= */
 
 const playBtn =
-    document.getElementById("playBtn");
+    document.getElementById(
+        "playBtn"
+    );
+
 
 const previousBtn =
-    document.getElementById("previousBtn");
+    document.getElementById(
+        "previousBtn"
+    );
+
 
 const nextBtn =
-    document.getElementById("nextBtn");
+    document.getElementById(
+        "nextBtn"
+    );
+
 
 const progress =
-    document.getElementById("progress");
+    document.getElementById(
+        "progress"
+    );
+
 
 const currentTime =
-    document.getElementById("currentTime");
+    document.getElementById(
+        "currentTime"
+    );
+
 
 const duration =
-    document.getElementById("duration");
+    document.getElementById(
+        "duration"
+    );
+
 
 const songTitle =
-    document.getElementById("songTitle");
+    document.getElementById(
+        "songTitle"
+    );
+
 
 const artistName =
-    document.getElementById("artistName");
+    document.getElementById(
+        "artistName"
+    );
 
 
 /* =========================================
-   YOUTUBE API
+   YOUTUBE API READY
 ========================================= */
 
 function onYouTubeIframeAPIReady() {
 
-    youtubePlayer = new YT.Player(
-        "youtube-player",
-        {
 
-            width: "200",
+    youtubePlayer =
+        new YT.Player(
+            "youtube-player",
+            {
 
-            height: "200",
 
-            videoId:
-                songs[currentSong].videoId,
+                width:
+                    "200",
 
-            playerVars: {
 
-                controls: 1,
+                height:
+                    "200",
 
-                playsinline: 1,
 
-                rel: 0
+                videoId:
+                    songs[
+                        currentSong
+                    ].videoId,
 
-            },
 
-            events: {
+                playerVars:
+                    {
 
-                onReady:
-                    onPlayerReady,
+                        /*
+                            Keep YouTube controls
+                            available.
+                        */
 
-                onStateChange:
-                    onPlayerStateChange
+                        controls:
+                            1,
+
+
+                        playsinline:
+                            1,
+
+
+                        rel:
+                            0,
+
+
+                        modestbranding:
+                            1
+
+                    },
+
+
+                events:
+                    {
+
+                        onReady:
+                            onPlayerReady,
+
+
+                        onStateChange:
+                            onPlayerStateChange
+
+                    }
 
             }
-
-        }
-    );
+        );
 
 }
 
@@ -331,9 +576,12 @@ function onYouTubeIframeAPIReady() {
 
 function onPlayerReady() {
 
+
     updateSongInformation();
 
+
     updateDuration();
+
 
 }
 
@@ -342,20 +590,9 @@ function onPlayerReady() {
    PLAYER STATE
 ========================================= */
 
-function onPlayerStateChange(event) {
-
-    /*
-
-        YT.PlayerState values:
-
-        -1 = Unstarted
-         0 = Ended
-         1 = Playing
-         2 = Paused
-         3 = Buffering
-         5 = Video cued
-
-    */
+function onPlayerStateChange(
+    event
+) {
 
 
     if (
@@ -363,7 +600,10 @@ function onPlayerStateChange(event) {
         YT.PlayerState.PLAYING
     ) {
 
-        playBtn.textContent = "Ⅱ";
+
+        playBtn.textContent =
+            "Ⅱ";
+
 
     }
 
@@ -373,7 +613,10 @@ function onPlayerStateChange(event) {
         YT.PlayerState.PAUSED
     ) {
 
-        playBtn.textContent = "▶";
+
+        playBtn.textContent =
+            "▶";
+
 
     }
 
@@ -383,7 +626,9 @@ function onPlayerStateChange(event) {
         YT.PlayerState.ENDED
     ) {
 
+
         nextSong();
+
 
     }
 
@@ -394,33 +639,42 @@ function onPlayerStateChange(event) {
    PLAY / PAUSE
 ========================================= */
 
-playBtn.addEventListener("click", () => {
+playBtn.addEventListener(
+    "click",
+    function () {
 
-    if (!youtubePlayer) {
 
-        return;
+        if (
+            !youtubePlayer
+        ) {
+
+            return;
+
+        }
+
+
+        const state =
+            youtubePlayer.getPlayerState();
+
+
+        if (
+            state ===
+            YT.PlayerState.PLAYING
+        ) {
+
+
+            youtubePlayer.pauseVideo();
+
+
+        } else {
+
+
+            youtubePlayer.playVideo();
+
+        }
 
     }
-
-
-    const state =
-        youtubePlayer.getPlayerState();
-
-
-    if (
-        state ===
-        YT.PlayerState.PLAYING
-    ) {
-
-        youtubePlayer.pauseVideo();
-
-    } else {
-
-        youtubePlayer.playVideo();
-
-    }
-
-});
+);
 
 
 /* =========================================
@@ -435,7 +689,10 @@ nextBtn.addEventListener(
 
 function nextSong() {
 
-    if (!youtubePlayer) {
+
+    if (
+        !youtubePlayer
+    ) {
 
         return;
 
@@ -450,12 +707,15 @@ function nextSong() {
         songs.length
     ) {
 
-        currentSong = 0;
+        currentSong =
+            0;
 
     }
 
 
-    loadSong(currentSong);
+    loadSong(
+        currentSong
+    );
 
 }
 
@@ -472,7 +732,10 @@ previousBtn.addEventListener(
 
 function previousSong() {
 
-    if (!youtubePlayer) {
+
+    if (
+        !youtubePlayer
+    ) {
 
         return;
 
@@ -482,7 +745,9 @@ function previousSong() {
     currentSong--;
 
 
-    if (currentSong < 0) {
+    if (
+        currentSong < 0
+    ) {
 
         currentSong =
             songs.length - 1;
@@ -490,7 +755,9 @@ function previousSong() {
     }
 
 
-    loadSong(currentSong);
+    loadSong(
+        currentSong
+    );
 
 }
 
@@ -499,9 +766,14 @@ function previousSong() {
    LOAD SONG
 ========================================= */
 
-function loadSong(index) {
+function loadSong(
+    index
+) {
 
-    if (!youtubePlayer) {
+
+    if (
+        !youtubePlayer
+    ) {
 
         return;
 
@@ -512,8 +784,6 @@ function loadSong(index) {
         songs[index];
 
 
-    /* Update text */
-
     songTitle.textContent =
         song.title;
 
@@ -522,18 +792,17 @@ function loadSong(index) {
         song.artist;
 
 
-    /* Reset progress */
+    progress.value =
+        0;
 
-    progress.value = 0;
 
     currentTime.textContent =
         "0:00";
 
+
     duration.textContent =
         "0:00";
 
-
-    /* Load YouTube video */
 
     youtubePlayer.loadVideoById(
         song.videoId
@@ -543,10 +812,11 @@ function loadSong(index) {
 
 
 /* =========================================
-   UPDATE SONG INFORMATION
+   SONG INFORMATION
 ========================================= */
 
 function updateSongInformation() {
+
 
     const song =
         songs[currentSong];
@@ -563,90 +833,16 @@ function updateSongInformation() {
 
 
 /* =========================================
-   UPDATE DURATION
+   UPDATE PROGRESS
 ========================================= */
 
-function updateDuration() {
-
-    if (!youtubePlayer) {
-
-        return;
-
-    }
+setInterval(
+    function () {
 
 
-    const total =
-        youtubePlayer.getDuration();
-
-
-    if (total) {
-
-        duration.textContent =
-            formatTime(total);
-
-    }
-
-}
-
-
-/* =========================================
-   PROGRESS BAR
-========================================= */
-
-setInterval(() => {
-
-    if (!youtubePlayer) {
-
-        return;
-
-    }
-
-
-    const total =
-        youtubePlayer.getDuration();
-
-
-    const current =
-        youtubePlayer.getCurrentTime();
-
-
-    if (!total) {
-
-        return;
-
-    }
-
-
-    const percentage =
-        (
-            current /
-            total
-        ) * 100;
-
-
-    progress.value =
-        percentage;
-
-
-    currentTime.textContent =
-        formatTime(current);
-
-
-    duration.textContent =
-        formatTime(total);
-
-}, 500);
-
-
-/* =========================================
-   SEEK THROUGH SONG
-========================================= */
-
-progress.addEventListener(
-    "input",
-    () => {
-
-        if (!youtubePlayer) {
+        if (
+            !youtubePlayer
+        ) {
 
             return;
 
@@ -657,7 +853,72 @@ progress.addEventListener(
             youtubePlayer.getDuration();
 
 
-        if (!total) {
+        const current =
+            youtubePlayer.getCurrentTime();
+
+
+        if (
+            !total
+        ) {
+
+            return;
+
+        }
+
+
+        const percentage =
+            (
+                current /
+                total
+            ) * 100;
+
+
+        progress.value =
+            percentage;
+
+
+        currentTime.textContent =
+            formatTime(
+                current
+            );
+
+
+        duration.textContent =
+            formatTime(
+                total
+            );
+
+
+    },
+    500
+);
+
+
+/* =========================================
+   SEEK
+========================================= */
+
+progress.addEventListener(
+    "input",
+    function () {
+
+
+        if (
+            !youtubePlayer
+        ) {
+
+            return;
+
+        }
+
+
+        const total =
+            youtubePlayer.getDuration();
+
+
+        if (
+            !total
+        ) {
 
             return;
 
@@ -681,10 +942,47 @@ progress.addEventListener(
 
 
 /* =========================================
+   UPDATE DURATION
+========================================= */
+
+function updateDuration() {
+
+
+    if (
+        !youtubePlayer
+    ) {
+
+        return;
+
+    }
+
+
+    const total =
+        youtubePlayer.getDuration();
+
+
+    if (
+        total
+    ) {
+
+        duration.textContent =
+            formatTime(
+                total
+            );
+
+    }
+
+}
+
+
+/* =========================================
    FORMAT TIME
 ========================================= */
 
-function formatTime(seconds) {
+function formatTime(
+    seconds
+) {
+
 
     if (
         !seconds ||
@@ -698,13 +996,15 @@ function formatTime(seconds) {
 
     const minutes =
         Math.floor(
-            seconds / 60
+            seconds /
+            60
         );
 
 
     const remainingSeconds =
         Math.floor(
-            seconds % 60
+            seconds %
+            60
         );
 
 
@@ -713,7 +1013,10 @@ function formatTime(seconds) {
         ":" +
         String(
             remainingSeconds
-        ).padStart(2, "0")
+        ).padStart(
+            2,
+            "0"
+        )
     );
 
 }
@@ -723,11 +1026,24 @@ function formatTime(seconds) {
    MOUSE PARALLAX
 ========================================= */
 
-if (window.innerWidth > 700) {
+if (
+    window.innerWidth > 700
+) {
+
 
     document.addEventListener(
         "mousemove",
-        (event) => {
+        function (event) {
+
+
+            if (
+                !backgroundImage
+            ) {
+
+                return;
+
+            }
+
 
             const x =
                 (
@@ -760,37 +1076,45 @@ if (window.innerWidth > 700) {
 
 document.addEventListener(
     "keydown",
-    (event) => {
+    function (event) {
 
-        /* Space = Play / Pause */
+
+        /* SPACE = PLAY / PAUSE */
 
         if (
-            event.code === "Space"
+            event.code ===
+            "Space"
         ) {
 
+
             event.preventDefault();
+
 
             playBtn.click();
 
         }
 
 
-        /* Right arrow = Next */
+        /* RIGHT = NEXT */
 
         if (
-            event.code === "ArrowRight"
+            event.code ===
+            "ArrowRight"
         ) {
+
 
             nextBtn.click();
 
         }
 
 
-        /* Left arrow = Previous */
+        /* LEFT = PREVIOUS */
 
         if (
-            event.code === "ArrowLeft"
+            event.code ===
+            "ArrowLeft"
         ) {
+
 
             previousBtn.click();
 
