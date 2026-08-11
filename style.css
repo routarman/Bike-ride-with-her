@@ -1,18 +1,31 @@
 /* =========================================
    LONG DRIVE WITH HER
+   MAIN STYLE
+========================================= */
+
+
+/* =========================================
+   RESET
 ========================================= */
 
 * {
+
     margin: 0;
+
     padding: 0;
+
     box-sizing: border-box;
+
 }
 
 
 html,
 body {
+
     width: 100%;
+
     height: 100%;
+
 }
 
 
@@ -32,7 +45,7 @@ body {
 
 
 /* =========================================
-   MAIN
+   MAIN EXPERIENCE
 ========================================= */
 
 .experience {
@@ -42,6 +55,8 @@ body {
     width: 100vw;
 
     height: 100vh;
+
+    height: 100svh;
 
     min-height: 600px;
 
@@ -59,6 +74,10 @@ body {
     position: absolute;
 
     inset: 0;
+
+    width: 100%;
+
+    height: 100%;
 
     overflow: hidden;
 
@@ -78,15 +97,18 @@ body {
     transform: scale(1.04);
 
     transition:
+
         opacity 0.8s ease,
-        transform 0.4s ease,
-        filter 1s ease;
+
+        filter 1s ease,
+
+        transform 0.3s ease;
 
 }
 
 
 /* =========================================
-   OVERLAY
+   CINEMATIC OVERLAY
 ========================================= */
 
 .cinematic-overlay {
@@ -103,9 +125,10 @@ body {
 
         linear-gradient(
             180deg,
-            rgba(0,0,0,0.40),
-            rgba(0,0,0,0.08) 40%,
-            rgba(0,0,0,0.68)
+            rgba(0,0,0,0.40) 0%,
+            rgba(0,0,0,0.08) 35%,
+            rgba(0,0,0,0.18) 60%,
+            rgba(0,0,0,0.72) 100%
         );
 
 }
@@ -124,14 +147,14 @@ body {
         radial-gradient(
             ellipse at center,
             transparent 35%,
-            rgba(0,0,0,0.4)
+            rgba(0,0,0,0.42) 100%
         );
 
 }
 
 
 /* =========================================
-   GRAIN
+   FILM GRAIN
 ========================================= */
 
 .film-grain {
@@ -144,11 +167,13 @@ body {
 
     pointer-events: none;
 
-    opacity: 0.05;
+    opacity: 0.045;
 
     background-image:
 
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        url(
+            "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"
+        );
 
 }
 
@@ -174,9 +199,11 @@ body {
 
     font-size: 23px;
 
+    font-weight: 300;
+
     letter-spacing: 4px;
 
-    font-weight: 300;
+    line-height: 1;
 
 }
 
@@ -189,7 +216,7 @@ body {
 
     border-top:
         1px solid
-        rgba(255,255,255,0.4);
+        rgba(255,255,255,0.45);
 
     font-size: 8px;
 
@@ -201,7 +228,7 @@ body {
 
 
 /* =========================================
-   DAY NIGHT
+   DAY / NIGHT
 ========================================= */
 
 .mode-switch {
@@ -220,7 +247,7 @@ body {
 
     border:
         1px solid
-        rgba(255,255,255,0.25);
+        rgba(255,255,255,0.28);
 
     border-radius: 50px;
 
@@ -230,26 +257,37 @@ body {
     backdrop-filter:
         blur(15px);
 
+    -webkit-backdrop-filter:
+        blur(15px);
+
 }
 
 
 .mode {
 
-    border: 0;
+    border: none;
 
     background: transparent;
 
-    color: rgba(255,255,255,0.7);
+    color:
+        rgba(255,255,255,0.75);
 
-    padding: 9px 14px;
+    padding:
+        9px 14px;
 
     border-radius: 50px;
+
+    font-family:
+        "DM Sans",
+        sans-serif;
 
     font-size: 9px;
 
     letter-spacing: 1.5px;
 
     cursor: pointer;
+
+    transition: 0.3s ease;
 
 }
 
@@ -264,7 +302,7 @@ body {
 
 
 /* =========================================
-   CENTER
+   CENTER CONTENT
 ========================================= */
 
 .center-content {
@@ -275,7 +313,7 @@ body {
 
     left: 50%;
 
-    top: 50%;
+    top: 48%;
 
     width: min(650px, 90vw);
 
@@ -286,6 +324,10 @@ body {
 
 }
 
+
+/* =========================================
+   LABEL
+========================================= */
 
 .small-label {
 
@@ -300,11 +342,19 @@ body {
 }
 
 
+/* =========================================
+   TITLE
+========================================= */
+
 h1 {
 
     display: flex;
 
     flex-direction: column;
+
+    align-items: center;
+
+    gap: 2px;
 
 }
 
@@ -320,6 +370,10 @@ h1 {
 
     font-weight: 600;
 
+    text-shadow:
+        0 5px 30px
+        rgba(0,0,0,0.45);
+
 }
 
 
@@ -327,6 +381,7 @@ h1 {
 
     font-family:
         "Playfair Display",
+        Georgia,
         serif;
 
     font-size:
@@ -334,12 +389,22 @@ h1 {
 
     line-height: 1;
 
+    letter-spacing: -3px;
+
     font-style: italic;
 
-    letter-spacing: -3px;
+    font-weight: 400;
+
+    text-shadow:
+        0 5px 30px
+        rgba(0,0,0,0.45);
 
 }
 
+
+/* =========================================
+   DIVIDER
+========================================= */
 
 .divider {
 
@@ -347,7 +412,8 @@ h1 {
 
     max-width: 65vw;
 
-    margin: 15px auto 10px;
+    margin:
+        15px auto 10px;
 
     display: flex;
 
@@ -374,8 +440,14 @@ h1 {
 
     font-size: 12px;
 
+    opacity: 0.85;
+
 }
 
+
+/* =========================================
+   TAGLINE
+========================================= */
 
 .tagline {
 
@@ -398,51 +470,29 @@ h1 {
 
     max-width: 90vw;
 
-    margin: 20px auto 0;
+    margin:
+        20px auto 0;
 
     padding: 14px;
 
     border:
         1px solid
-        rgba(255,255,255,0.3);
+        rgba(255,255,255,0.30);
 
     border-radius: 16px;
 
     background:
-        rgba(8,8,8,0.3);
+        rgba(8,8,8,0.30);
 
     backdrop-filter:
         blur(15px);
 
-}
+    -webkit-backdrop-filter:
+        blur(15px);
 
-
-/* =========================================
-   YOUTUBE PLAYER
-========================================= */
-
-.youtube-wrapper {
-
-    width: 200px;
-
-    height: 200px;
-
-    margin: 0 auto 12px;
-
-    overflow: hidden;
-
-    border-radius: 10px;
-
-    background: #000;
-
-}
-
-
-#youtube-player {
-
-    width: 200px;
-
-    height: 200px;
+    box-shadow:
+        0 20px 70px
+        rgba(0,0,0,0.25);
 
 }
 
@@ -460,6 +510,37 @@ h1 {
     letter-spacing: 3px;
 
     opacity: 0.55;
+
+}
+
+
+/* =========================================
+   YOUTUBE PLAYER
+========================================= */
+
+.youtube-wrapper {
+
+    width: 200px;
+
+    height: 200px;
+
+    margin:
+        0 auto 12px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background: #000;
+
+}
+
+
+#youtube-player {
+
+    width: 200px;
+
+    height: 200px;
 
 }
 
@@ -485,6 +566,8 @@ h1 {
 
     height: 38px;
 
+    flex-shrink: 0;
+
     display: flex;
 
     align-items: center;
@@ -495,6 +578,8 @@ h1 {
 
     background:
         rgba(255,255,255,0.12);
+
+    font-size: 18px;
 
 }
 
@@ -509,6 +594,8 @@ h1 {
 .song-title {
 
     font-size: 12px;
+
+    font-weight: 500;
 
 }
 
@@ -541,9 +628,9 @@ h1 {
 }
 
 
-.progress-area span {
+.music-time {
 
-    min-width: 25px;
+    min-width: 28px;
 
     font-size: 7px;
 
@@ -560,10 +647,16 @@ h1 {
 
     appearance: none;
 
+    -webkit-appearance: none;
+
+    border: none;
+
+    border-radius: 20px;
+
     background:
         rgba(255,255,255,0.25);
 
-    border-radius: 10px;
+    cursor: pointer;
 
 }
 
@@ -571,6 +664,8 @@ h1 {
 .progress::-webkit-slider-thumb {
 
     appearance: none;
+
+    -webkit-appearance: none;
 
     width: 8px;
 
@@ -583,8 +678,23 @@ h1 {
 }
 
 
+.progress::-moz-range-thumb {
+
+    width: 8px;
+
+    height: 8px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: white;
+
+}
+
+
 /* =========================================
-   CONTROLS
+   MUSIC CONTROLS
 ========================================= */
 
 .music-controls {
@@ -604,7 +714,13 @@ h1 {
 
 .music-controls button {
 
-    border: 0;
+    width: 32px;
+
+    height: 32px;
+
+    border: none;
+
+    border-radius: 50%;
 
     background: transparent;
 
@@ -612,22 +728,30 @@ h1 {
 
     cursor: pointer;
 
-    font-size: 12px;
+    font-size: 11px;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+
+}
+
+
+.music-controls button:hover {
+
+    transform: scale(1.1);
+
+    background:
+        rgba(255,255,255,0.1);
 
 }
 
 
 .play-button {
 
-    width: 34px;
-
-    height: 34px;
-
     border:
         1px solid
         rgba(255,255,255,0.7) !important;
-
-    border-radius: 50%;
 
 }
 
@@ -655,11 +779,20 @@ h1 {
 
     font-family:
         "Playfair Display",
+        Georgia,
         serif;
 
     font-size: 16px;
 
     line-height: 1.5;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+
+    text-shadow:
+        0 3px 20px
+        rgba(0,0,0,0.5);
 
 }
 
@@ -670,6 +803,7 @@ h1 {
 
     font-family:
         "Playfair Display",
+        Georgia,
         serif;
 
     font-size: 11px;
@@ -680,6 +814,10 @@ h1 {
 
 }
 
+
+/* =========================================
+   REFRESH QUOTE
+========================================= */
 
 .quote-refresh {
 
@@ -706,6 +844,19 @@ h1 {
 
     cursor: pointer;
 
+    transition: 0.3s;
+
+}
+
+
+.quote-refresh:hover {
+
+    background: white;
+
+    color: black;
+
+    transform: rotate(180deg);
+
 }
 
 
@@ -725,16 +876,23 @@ h1 {
 
     font-family:
         "Playfair Display",
+        Georgia,
         serif;
-
-    font-style: italic;
 
     font-size: 18px;
 
-    opacity: 0.75;
+    font-style: italic;
+
+    letter-spacing: 1px;
+
+    opacity: 0.78;
 
 }
 
+
+/* =========================================
+   BOTTOM NOTE
+========================================= */
 
 .bottom-note {
 
@@ -743,6 +901,8 @@ h1 {
     right: 42px;
 
     bottom: 15px;
+
+    z-index: 10;
 
     font-size: 7px;
 
@@ -774,7 +934,7 @@ body.night .cinematic-overlay {
         linear-gradient(
             180deg,
             rgba(2,8,25,0.65),
-            rgba(1,5,18,0.2),
+            rgba(1,5,18,0.25),
             rgba(0,2,10,0.85)
         );
 
@@ -799,17 +959,19 @@ body.night .mode.active {
 
     .experience {
 
-        height: 100svh;
-
         min-height: 520px;
 
     }
 
 
+    /* MOBILE BACKGROUND */
+
     .background img {
 
         content:
-            url("assets/bike-day-mobile.png");
+            url(
+                "assets/bike-day-mobile.png"
+            );
 
         object-position:
             center center;
@@ -820,7 +982,9 @@ body.night .mode.active {
     body.night .background img {
 
         content:
-            url("assets/bike-night-mobile.png");
+            url(
+                "assets/bike-night-mobile.png"
+            );
 
     }
 
@@ -858,7 +1022,7 @@ body.night .mode.active {
     }
 
 
-    /* MODE */
+    /* DAY NIGHT */
 
     .mode-switch {
 
@@ -871,9 +1035,12 @@ body.night .mode.active {
 
     .mode {
 
-        padding: 7px 8px;
+        padding:
+            7px 8px;
 
         font-size: 7px;
+
+        letter-spacing: 1px;
 
     }
 
@@ -891,6 +1058,8 @@ body.night .mode.active {
 
     .small-label {
 
+        margin-bottom: 10px;
+
         font-size: 6px;
 
         letter-spacing: 3px;
@@ -902,7 +1071,7 @@ body.night .mode.active {
 
         font-size:
             clamp(
-                32px,
+                31px,
                 10vw,
                 50px
             );
@@ -921,6 +1090,18 @@ body.night .mode.active {
                 48px
             );
 
+        letter-spacing: -1.5px;
+
+    }
+
+
+    .divider {
+
+        width: 55vw;
+
+        margin:
+            10px auto 7px;
+
     }
 
 
@@ -929,6 +1110,8 @@ body.night .mode.active {
         font-size: 6px;
 
         letter-spacing: 2px;
+
+        white-space: nowrap;
 
     }
 
@@ -957,6 +1140,54 @@ body.night .mode.active {
     }
 
 
+    #youtube-player {
+
+        width: 200px;
+
+        height: 200px;
+
+    }
+
+
+    .music-info {
+
+        margin-top: 3px;
+
+    }
+
+
+    .album-art {
+
+        width: 34px;
+
+        height: 34px;
+
+        font-size: 15px;
+
+    }
+
+
+    .song-title {
+
+        font-size: 10px;
+
+    }
+
+
+    .artist {
+
+        font-size: 7px;
+
+    }
+
+
+    .music-controls {
+
+        gap: 15px;
+
+    }
+
+
     /* QUOTE */
 
     .quote-box {
@@ -975,6 +1206,8 @@ body.night .mode.active {
     .quote {
 
         font-size: 10px;
+
+        line-height: 1.45;
 
     }
 
@@ -1020,7 +1253,7 @@ body.night .mode.active {
 
 
 /* =========================================
-   VERY SMALL PHONES
+   EXTRA SMALL PHONES
 ========================================= */
 
 @media (max-width: 360px) {
@@ -1049,16 +1282,7 @@ body.night .mode.active {
 
     .music-player {
 
-        margin-top: 8px;
-
-    }
-
-
-    .youtube-wrapper {
-
-        width: 200px;
-
-        height: 200px;
+        margin-top: 7px;
 
     }
 
@@ -1066,6 +1290,13 @@ body.night .mode.active {
     .quote {
 
         font-size: 9px;
+
+    }
+
+
+    .signature {
+
+        font-size: 10px;
 
     }
 
