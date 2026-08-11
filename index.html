@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Long Drive With Her — a cinematic journey for two."
+    >
+
+    <title>Long Drive With Her</title>
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Your CSS -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         MAIN WEBSITE
+    ====================================== -->
+
+    <main class="experience">
+
+
+        <!-- =================================
+             BACKGROUND IMAGE
+        ================================== -->
+
+        <div class="background">
+
+            <img
+                id="backgroundImage"
+                src="assets/bike-day-desktop.png"
+                alt="Long drive motorcycle"
+            >
+
+        </div>
+
+
+        <!-- Dark cinematic overlay -->
+
+        <div class="cinematic-overlay"></div>
+
+
+        <!-- Film grain -->
+
+        <div class="film-grain"></div>
+
+
+        <!-- =================================
+             LIVE INDIAN TIME
+        ================================== -->
+
+        <div class="clock">
+
+            <div
+                id="time"
+                class="time"
+            >
+                00:00:00
+            </div>
+
+            <div class="location">
+                INDIA · IST
+            </div>
+
+        </div>
+
+
+        <!-- =================================
+             DAY / NIGHT SWITCH
+        ================================== -->
+
+        <div class="mode-switch">
+
+
+            <button
+                id="dayBtn"
+                class="mode active"
+                type="button"
+            >
+                ☀ DAY
+            </button>
+
+
+            <button
+                id="nightBtn"
+                class="mode"
+                type="button"
+            >
+                ☾ NIGHT
+            </button>
+
+
+        </div>
+
+
+        <!-- =================================
+             CENTER CONTENT
+        ================================== -->
+
+        <section class="center-content">
+
+
+            <div class="small-label">
+                A JOURNEY FOR TWO
+            </div>
+
+
+            <h1>
+
+                <span class="title-main">
+                    LONG DRIVE
+                </span>
+
+                <span class="title-italic">
+                    WITH HER
+                </span>
+
+            </h1>
+
+
+            <!-- Divider -->
+
+            <div class="divider">
+
+                <span></span>
+
+                <small>♡</small>
+
+                <span></span>
+
+            </div>
+
+
+            <!-- Tagline -->
+
+            <p class="tagline">
+                one road · two hearts · endless miles
+            </p>
+
+
+            <!-- =================================
+                 MUSIC PLAYER
+            ================================== -->
+
+            <div class="music-player">
+
+
+                <div class="now-playing">
+                    NOW PLAYING
+                </div>
+
+
+                <!-- =================================
+                     YOUTUBE PLAYER
+                ================================== -->
+
+                <div class="youtube-wrapper">
+
+                    <div id="youtube-player"></div>
+
+                </div>
+
+
+                <!-- =================================
+                     SONG INFORMATION
+                ================================== -->
+
+                <div class="music-info">
+
+
+                    <div class="album-art">
+                        ♪
+                    </div>
+
+
+                    <div class="song-details">
+
+
+                        <div
+                            id="songTitle"
+                            class="song-title"
+                        >
+                            Loading playlist...
+                        </div>
+
+
+                        <div
+                            id="artistName"
+                            class="artist"
+                        >
+                            YouTube
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- =================================
+                     PROGRESS BAR
+                ================================== -->
+
+                <div class="progress-area">
+
+
+                    <span
+                        id="currentTime"
+                        class="music-time"
+                    >
+                        0:00
+                    </span>
+
+
+                    <input
+                        id="progress"
+                        class="progress"
+                        type="range"
+                        min="0"
+                        max="100"
+                        value="0"
+                    >
+
+
+                    <span
+                        id="duration"
+                        class="music-time"
+                    >
+                        0:00
+                    </span>
+
+
+                </div>
+
+
+                <!-- =================================
+                     PLAYER BUTTONS
+                ================================== -->
+
+                <div class="music-controls">
+
+
+                    <button
+                        id="previousBtn"
+                        type="button"
+                        aria-label="Previous song"
+                    >
+                        ◀
+                    </button>
+
+
+                    <button
+                        id="playBtn"
+                        class="play-button"
+                        type="button"
+                        aria-label="Play or pause"
+                    >
+                        ▶
+                    </button>
+
+
+                    <button
+                        id="nextBtn"
+                        type="button"
+                        aria-label="Next song"
+                    >
+                        ▶
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =================================
+             LOVE QUOTE
+        ================================== -->
+
+        <div class="quote-box">
+
+
+            <button
+                id="quoteRefresh"
+                class="quote-refresh"
+                type="button"
+                aria-label="Change quote"
+            >
+                ↻
+            </button>
+
+
+            <div
+                id="quote"
+                class="quote"
+            >
+                "कुछ रास्ते मंज़िल के लिए नहीं,
+                किसी के साथ चलने के लिए होते हैं।"
+            </div>
+
+
+            <div class="quote-author">
+                — cinesutrachitra
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================
+             SIGNATURE
+        ================================== -->
+
+        <div class="signature">
+            cinesutrachitra
+        </div>
+
+
+        <!-- =================================
+             BOTTOM TEXT
+        ================================== -->
+
+        <div class="bottom-note">
+            KEEP RIDING · KEEP LOVING
+        </div>
+
+
+    </main>
+
+
+    <!-- =====================================
+         YOUTUBE IFRAME API
+
+         KEEP THIS ONLY ONCE
+    ====================================== -->
+
+    <script
+        src="https://www.youtube.com/iframe_api">
+    </script>
+
+
+    <!-- =====================================
+         YOUR JAVASCRIPT
+
+         KEEP THIS AFTER YOUTUBE API
+    ====================================== -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
