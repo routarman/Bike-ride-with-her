@@ -2,131 +2,311 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Long Drive With Her</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
 </head>
 
 <body>
 
-    <!-- Background -->
-    <div class="background"></div>
+<div class="page">
 
-    <!-- Day / Night Button -->
-    <button id="themeToggle" class="theme-toggle">
-        ☾ NIGHT
-    </button>
+    <div class="content">
 
-    <!-- Main Content -->
-    <main class="hero">
+        <!-- ================= CLOCK ================= -->
 
-        <p class="eyebrow">A JOURNEY MADE FOR TWO</p>
+        <div class="clock-container">
 
-        <h1>Long Drive With Her</h1>
-
-        <p class="subtitle">
-            Some roads are better when she's beside you.
-        </p>
-
-        <div class="quote">
-            <span>“</span>
-            <p>कुछ रास्ते मंज़िल के लिए नहीं, किसी के साथ चलने के लिए होते हैं।</p>
-            <span>♡</span>
-        </div>
-
-        <!-- Music Player -->
-        <section class="music-player">
-
-            <p class="player-label">NOW PLAYING</p>
-
-            <h2 id="songTitle">Song 1</h2>
-
-            <p id="songArtist">♫</p>
-
-            <!-- Hidden YouTube player -->
-            <div id="youtube-container">
-                <div id="youtube-player"></div>
+            <div id="clock" class="clock">
+                00:00:00
             </div>
 
+            <div class="clock-line"></div>
+
+            <div class="clock-location">
+                INDIA · IST
+            </div>
+
+        </div>
+
+
+        <!-- ================= DAY / NIGHT ================= -->
+
+        <div class="theme-switch">
+
+            <button
+                id="dayBtn"
+                class="theme-btn active"
+                type="button"
+            >
+                <span>☀</span>
+                DAY
+            </button>
+
+            <button
+                id="nightBtn"
+                class="theme-btn"
+                type="button"
+            >
+                <span>☾</span>
+                NIGHT
+            </button>
+
+        </div>
+
+
+        <!-- ================= HERO ================= -->
+
+        <section class="hero">
+
+            <div class="eyebrow">
+                A JOURNEY MADE FOR TWO
+            </div>
+
+            <h1 class="hero-title">
+
+                <span>
+                    LONG DRIVE
+                </span>
+
+                <span class="with-her">
+                    WITH HER
+                </span>
+
+            </h1>
+
+            <div class="hero-divider">
+
+                <span class="hero-heart">
+                    ♡
+                </span>
+
+            </div>
+
+            <p class="hero-subtitle">
+                one road · two hearts · endless miles
+            </p>
+
+        </section>
+
+
+        <!-- ================= MUSIC PLAYER ================= -->
+
+        <div class="music-player">
+
+            <div class="player-heading">
+                NOW PLAYING
+            </div>
+
+
+            <!-- Song information -->
+
+            <div class="song-info">
+
+                <img
+                    id="songCover"
+                    class="song-cover"
+                    src="assets/song1.jpg"
+                    alt="Song Cover"
+                >
+
+                <div class="song-details">
+
+                    <div
+                        id="songTitle"
+                        class="song-title"
+                    >
+                        Safarnama
+                    </div>
+
+                    <div
+                        id="songArtist"
+                        class="song-artist"
+                    >
+                        Lucky Ali
+                    </div>
+
+                </div>
+
+
+                <button
+                    id="favoriteBtn"
+                    class="favorite-btn"
+                    type="button"
+                    aria-label="Favorite"
+                >
+                    ♡
+                </button>
+
+            </div>
+
+
             <!-- Progress -->
-            <div class="time-row">
-                <span id="currentTime">00:00</span>
+
+            <div class="progress-container">
 
                 <input
+                    id="progressBar"
+                    class="progress-bar"
                     type="range"
-                    id="progress"
                     min="0"
                     max="100"
                     value="0"
                 >
 
-                <span id="duration">00:00</span>
+                <div class="time-row">
+
+                    <span id="currentTime">
+                        00:00
+                    </span>
+
+                    <span id="duration">
+                        00:00
+                    </span>
+
+                </div>
+
             </div>
 
+
             <!-- Controls -->
+
             <div class="controls">
 
-                <button id="previousBtn" class="control-btn">
+                <button
+                    id="previousBtn"
+                    class="control-btn"
+                    type="button"
+                    aria-label="Previous song"
+                >
                     ⏮
                 </button>
 
-                <button id="playBtn" class="play-btn">
+
+                <button
+                    id="playBtn"
+                    class="play-btn"
+                    type="button"
+                    aria-label="Play"
+                >
                     ▶
                 </button>
 
-                <button id="nextBtn" class="control-btn">
+
+                <button
+                    id="nextBtn"
+                    class="control-btn"
+                    type="button"
+                    aria-label="Next song"
+                >
                     ⏭
                 </button>
 
             </div>
 
-            <!-- Volume -->
-            <div class="volume-row">
-
-                <span>🔊</span>
-
-                <input
-                    type="range"
-                    id="volume"
-                    min="0"
-                    max="100"
-                    value="70"
-                >
-
-            </div>
 
             <!-- Search -->
-            <div class="search-row">
+
+            <div class="search-container">
 
                 <input
-                    type="text"
                     id="searchInput"
+                    class="search-input"
+                    type="text"
                     placeholder="Search a song..."
+                    autocomplete="off"
                 >
 
-                <button id="searchBtn">
+                <button
+                    id="searchBtn"
+                    class="search-btn"
+                    type="button"
+                >
                     Search
                 </button>
 
             </div>
 
+
             <!-- Playlist -->
-            <div class="playlist-title">
-                ♫ Playlist
+
+            <div class="playlist">
+
+                <div class="playlist-title">
+                    ♫ Playlist
+                </div>
+
+                <div id="playlistItems">
+
+                    <!-- JavaScript will create songs here -->
+
+                </div>
+
             </div>
 
-            <div id="playlist" class="playlist"></div>
+        </div>
 
-        </section>
 
-    </main>
+        <!-- ================= QUOTE ================= -->
 
-    <!-- YouTube IFrame API -->
-    <script src="https://www.youtube.com/iframe_api"></script>
+        <div class="quote">
 
-    <script src="script.js"></script>
+            <span class="quote-mark">
+                “
+            </span>
+
+            कुछ रास्ते मंज़िल के लिए नहीं,
+            <br>
+
+            किसी के साथ चलने के लिए होते हैं।
+            
+            <span>
+                ”
+            </span>
+
+            <span class="quote-author">
+                — cinesutrachitra
+            </span>
+
+        </div>
+
+
+        <!-- ================= SIGNATURE ================= -->
+
+        <div class="signature">
+            cinesutrachitra
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= AUDIO ================= -->
+
+<audio
+    id="audioPlayer"
+    preload="metadata"
+>
+</audio>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
