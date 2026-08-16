@@ -1,3 +1,0 @@
-ytmusicapi
-flask
-flask-cors
