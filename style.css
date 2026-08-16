@@ -1,6 +1,7 @@
-/* =====================================================
-   RESET
-===================================================== */
+/* =========================================
+   LONG DRIVE WITH HER
+   COMPLETE STYLE.CSS
+========================================= */
 
 * {
     margin: 0;
@@ -15,239 +16,211 @@ body {
 }
 
 body {
+    font-family: "Poppins", Arial, sans-serif;
     overflow: hidden;
-
-    font-family: "Inter", sans-serif;
-
-    color: white;
-
+    color: #fff;
     background: #111;
 }
 
-
-/* =====================================================
-   HERO / BACKGROUND
-===================================================== */
+/* =========================================
+   MAIN BACKGROUND
+========================================= */
 
 .hero {
     position: relative;
-
-    width: 100%;
+    width: 100vw;
     height: 100vh;
-
-    min-height: 650px;
-
-    overflow: hidden;
 
     background-image:
         linear-gradient(
-            rgba(0, 0, 0, 0.35),
-            rgba(0, 0, 0, 0.48)
+            rgba(0, 0, 0, 0.28),
+            rgba(0, 0, 0, 0.38)
         ),
         url("assets/bike-day-desktop.png");
 
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
 
-    transition:
-        background-image 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow: hidden;
 }
 
-
-/* DARK OVERLAY */
+/* Dark overlay */
 
 .hero::after {
     content: "";
-
     position: absolute;
-
     inset: 0;
-
-    pointer-events: none;
 
     background:
         linear-gradient(
             to bottom,
-            rgba(0,0,0,0.25),
+            rgba(0, 0, 0, 0.18),
             transparent 35%,
-            rgba(0,0,0,0.45)
+            rgba(0, 0, 0, 0.25)
         );
+
+    pointer-events: none;
 }
 
+/* =========================================
+   TOP BAR
+========================================= */
 
-/* =====================================================
-   NIGHT MODE
-===================================================== */
-
-.hero.night {
-    background-image:
-        linear-gradient(
-            rgba(0, 0, 0, 0.48),
-            rgba(0, 0, 0, 0.62)
-        ),
-        url("assets/bike-night-desktop.png");
-}
-
-
-/* =====================================================
-   CLOCK
-===================================================== */
-
-.clock {
+.top-left {
     position: absolute;
-
-    top: 48px;
-    left: 52px;
-
+    top: 45px;
+    left: 55px;
     z-index: 5;
 }
 
-#time {
-    font-family: "Inter", sans-serif;
-
-    font-size: 28px;
-
-    font-weight: 300;
-
-    letter-spacing: 7px;
+.clock {
+    font-family: monospace;
+    font-size: 30px;
+    letter-spacing: 5px;
 }
 
-.clock-line {
-    width: 180px;
+.location {
+    margin-top: 8px;
+    padding-top: 8px;
 
-    height: 1px;
+    border-top: 1px solid rgba(255,255,255,0.7);
 
-    margin: 12px 0;
-
-    background: rgba(255,255,255,0.65);
-}
-
-.clock span {
     font-size: 12px;
-
     letter-spacing: 3px;
-
-    opacity: 0.85;
 }
 
+/* =========================================
+   DAY / NIGHT SWITCH
+========================================= */
 
-/* =====================================================
-   DAY NIGHT SWITCH
-===================================================== */
-
-.theme-switch {
+.theme-toggle {
     position: absolute;
+    top: 45px;
+    right: 55px;
 
-    top: 46px;
-    right: 52px;
-
-    z-index: 10;
+    z-index: 5;
 
     display: flex;
+    align-items: center;
 
-    padding: 3px;
+    padding: 4px;
 
-    border: 1px solid rgba(255,255,255,0.3);
-
+    border: 1px solid rgba(255,255,255,0.35);
     border-radius: 40px;
 
-    background: rgba(0,0,0,0.22);
-
-    backdrop-filter: blur(12px);
+    background: rgba(0,0,0,0.18);
+    backdrop-filter: blur(10px);
 }
 
 .theme-btn {
     border: none;
+    background: transparent;
 
     color: white;
 
-    background: transparent;
-
-    padding: 13px 24px;
+    padding: 12px 20px;
 
     border-radius: 30px;
 
-    cursor: pointer;
-
     font-size: 13px;
-
     letter-spacing: 2px;
 
-    transition: 0.3s;
+    cursor: pointer;
 }
 
 .theme-btn.active {
-    background: rgba(255,255,255,0.16);
+    background: rgba(255,255,255,0.12);
 
     box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,0.6);
-
-    color: #fff;
+        inset 0 0 15px rgba(255,255,255,0.1);
 }
 
+/* =========================================
+   HERO CONTENT
+========================================= */
 
-/* =====================================================
-   INTRO
-===================================================== */
+.hero-content {
+    position: relative;
+    z-index: 2;
 
-.intro {
-    position: absolute;
-
-    z-index: 3;
-
-    top: 27%;
-
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    width: 90%;
+    width: 100%;
 
     text-align: center;
+
+    padding-top: 29vh;
 }
+
+/* Small heading */
 
 .eyebrow {
     font-size: 12px;
 
-    letter-spacing: 7px;
+    letter-spacing: 6px;
 
-    font-weight: 400;
+    text-transform: uppercase;
 
     opacity: 0.8;
 
-    margin-bottom: 22px;
+    margin-bottom: 14px;
 }
 
-.intro h1 {
-    font-family: "Inter", sans-serif;
+/* Main title */
 
-    font-weight: 300;
+.title {
+    font-family: Georgia, "Times New Roman", serif;
 
-    font-size: clamp(60px, 7vw, 100px);
+    font-size: clamp(55px, 7vw, 105px);
 
-    line-height: 0.92;
+    font-weight: 400;
 
-    letter-spacing: 3px;
+    line-height: 0.95;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
 
     text-shadow:
-        0 4px 20px rgba(0,0,0,0.4);
+        0 3px 20px rgba(0,0,0,0.35);
 }
 
-.intro h1 em {
+/* Italic second line */
+
+.title-italic {
     display: block;
 
-    margin-top: 15px;
+    margin-top: 10px;
 
-    font-family: "Cormorant Garamond", serif;
+    font-family: Georgia, "Times New Roman", serif;
 
-    font-size: 0.82em;
+    font-size: clamp(38px, 5vw, 75px);
 
-    font-weight: 500;
+    font-style: italic;
+
+    font-weight: 400;
 
     letter-spacing: 3px;
 }
 
-.title-line {
+/* Subtitle */
+
+.subtitle {
+    margin-top: 25px;
+
+    font-size: 15px;
+
+    letter-spacing: 5px;
+
+    opacity: 0.9;
+}
+
+/* Heart separator */
+
+.heart-line {
     display: flex;
 
     align-items: center;
@@ -256,170 +229,108 @@ body {
 
     gap: 18px;
 
-    margin: 20px auto 12px;
-
-    width: 460px;
-
-    max-width: 80%;
+    margin-top: 15px;
 }
 
-.title-line span {
+.heart-line::before,
+.heart-line::after {
+    content: "";
+
+    width: 150px;
+
     height: 1px;
 
-    flex: 1;
-
-    background: rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.4);
 }
 
-.title-line b {
-    font-size: 22px;
-
-    font-weight: 300;
+.heart {
+    font-size: 20px;
 }
 
-.subtitle {
-    font-size: 15px;
+/* =========================================
+   MUSIC PLAYER
+========================================= */
 
-    letter-spacing: 5px;
-
-    opacity: 0.9;
-}
-
-
-/* =====================================================
-   QUOTE
-===================================================== */
-
-.quote {
-    position: absolute;
-
-    left: 52px;
-    bottom: 78px;
+.music-player {
+    position: relative;
 
     z-index: 5;
 
-    font-family: "Cormorant Garamond", serif;
-}
-
-.quote p {
-    font-size: 24px;
-
-    line-height: 1.45;
-
-    font-weight: 500;
-}
-
-.quote span {
-    display: block;
-
-    margin-top: 12px;
-
-    font-size: 17px;
-
-    font-style: italic;
-
-    color: rgba(255,255,255,0.85);
-}
-
-
-/* =====================================================
-   MUSIC PLAYER
-===================================================== */
-
-.music-player {
-    position: absolute;
-
-    z-index: 20;
-
-    left: 50%;
-
-    bottom: 8%;
-
-    transform: translateX(-50%);
-
-    width: 430px;
-
+    width: 370px;
     max-width: 88vw;
 
-    padding: 20px 27px 22px;
+    margin-top: 35px;
 
-    border: 1px solid rgba(255,255,255,0.38);
+    padding: 18px 22px;
 
-    border-radius: 28px;
-
-    background:
-        rgba(15,15,15,0.43);
+    background: rgba(15, 15, 15, 0.52);
 
     backdrop-filter: blur(20px);
-
     -webkit-backdrop-filter: blur(20px);
 
+    border: 1px solid rgba(255,255,255,0.35);
+
+    border-radius: 25px;
+
     box-shadow:
-        0 25px 60px rgba(0,0,0,0.35),
-        inset 0 1px 0 rgba(255,255,255,0.12);
+        0 20px 50px rgba(0,0,0,0.3);
 
     color: white;
 }
 
+/* =========================================
+   PLAYER TITLE
+========================================= */
 
-/* PLAYER TITLE */
-
-.player-label {
+.now-playing {
     text-align: center;
 
-    font-size: 10px;
+    font-size: 9px;
 
     letter-spacing: 4px;
 
-    margin-bottom: 15px;
+    margin-bottom: 14px;
 
     opacity: 0.85;
 }
 
-
-/* =====================================================
-   SONG INFO
-===================================================== */
+/* =========================================
+   SONG INFORMATION
+========================================= */
 
 .song-info {
     display: flex;
 
     align-items: center;
 
-    gap: 15px;
-
-    margin-bottom: 14px;
+    gap: 13px;
 }
 
 .song-cover {
-    width: 70px;
-
-    height: 70px;
+    width: 62px;
+    height: 62px;
 
     flex-shrink: 0;
 
     object-fit: cover;
 
-    border-radius: 10px;
+    border-radius: 8px;
 
     background: rgba(255,255,255,0.1);
-
-    box-shadow:
-        0 5px 20px rgba(0,0,0,0.3);
 }
 
 .song-details {
     flex: 1;
 
+    text-align: left;
+
     min-width: 0;
 }
 
-.song-details h2 {
-    font-size: 18px;
+.song-title {
+    font-size: 17px;
 
-    font-weight: 500;
-
-    margin-bottom: 5px;
+    font-weight: 600;
 
     white-space: nowrap;
 
@@ -428,72 +339,65 @@ body {
     text-overflow: ellipsis;
 }
 
-.song-details p {
-    font-size: 13px;
+.song-artist {
+    margin-top: 3px;
+
+    font-size: 12px;
 
     opacity: 0.7;
 }
 
+/* =========================================
+   LIKE BUTTON
+========================================= */
 
-/* HEART */
-
-.heart-btn {
+.like-btn {
     border: none;
 
     background: transparent;
 
     color: white;
 
-    font-size: 24px;
+    font-size: 21px;
 
     cursor: pointer;
 
     transition: 0.2s;
 }
 
-.heart-btn:hover {
+.like-btn:hover {
     transform: scale(1.15);
 }
 
-.heart-btn.liked {
-    color: #fff;
+/* =========================================
+   PROGRESS BAR
+========================================= */
 
-    transform: scale(1.1);
+.progress-container {
+    margin-top: 17px;
 }
 
-
-/* =====================================================
-   PROGRESS
-===================================================== */
-
-.progress-area {
-    width: 100%;
-}
-
-.progress {
-    appearance: none;
-
-    -webkit-appearance: none;
-
+.progress-bar {
     width: 100%;
 
     height: 3px;
 
-    border-radius: 20px;
+    appearance: none;
+    -webkit-appearance: none;
 
-    background: rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.35);
+
+    border-radius: 10px;
 
     cursor: pointer;
 }
 
-.progress::-webkit-slider-thumb {
+.progress-bar::-webkit-slider-thumb {
     appearance: none;
-
     -webkit-appearance: none;
 
-    width: 11px;
-
-    height: 11px;
+    width: 9px;
+    height: 9px;
 
     border-radius: 50%;
 
@@ -502,18 +406,15 @@ body {
     cursor: pointer;
 }
 
-.progress::-moz-range-thumb {
-    width: 11px;
-
-    height: 11px;
+.progress-bar::-moz-range-thumb {
+    width: 9px;
+    height: 9px;
 
     border: none;
 
     border-radius: 50%;
 
     background: white;
-
-    cursor: pointer;
 }
 
 .time-row {
@@ -523,17 +424,16 @@ body {
 
     margin-top: 5px;
 
-    font-size: 10px;
+    font-size: 9px;
 
     opacity: 0.7;
 }
 
+/* =========================================
+   PLAYER CONTROLS
+========================================= */
 
-/* =====================================================
-   CONTROLS
-===================================================== */
-
-.controls {
+.player-controls {
     display: flex;
 
     justify-content: center;
@@ -542,24 +442,21 @@ body {
 
     gap: 30px;
 
-    margin: 15px 0;
+    margin: 13px 0;
 }
 
-.control-btn,
-.play-btn {
+.control-btn {
     border: none;
+
+    background: transparent;
 
     color: white;
 
-    background: transparent;
+    font-size: 17px;
 
     cursor: pointer;
 
     transition: 0.2s;
-}
-
-.control-btn {
-    font-size: 18px;
 }
 
 .control-btn:hover {
@@ -567,77 +464,78 @@ body {
 }
 
 .play-btn {
-    width: 52px;
-
-    height: 52px;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    border: 1px solid rgba(255,255,255,0.8);
+    width: 46px;
+    height: 46px;
 
     border-radius: 50%;
 
-    font-size: 18px;
+    border: 1px solid rgba(255,255,255,0.9);
+
+    background: rgba(255,255,255,0.08);
+
+    color: white;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    transition: 0.25s;
 }
 
 .play-btn:hover {
-    background: rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.18);
 
     transform: scale(1.05);
 }
 
-
-/* =====================================================
+/* =========================================
    SEARCH
-===================================================== */
+========================================= */
 
-.search-box {
+.search-container {
     display: flex;
 
-    gap: 8px;
+    align-items: center;
 
-    margin-top: 7px;
+    gap: 7px;
+
+    margin-top: 10px;
 }
 
-.search-box input {
+.search-container input {
     flex: 1;
 
     min-width: 0;
 
-    height: 38px;
+    height: 34px;
 
-    padding: 0 15px;
+    padding: 0 13px;
 
-    border: 1px solid rgba(255,255,255,0.25);
+    border: 1px solid rgba(255,255,255,0.2);
 
-    border-radius: 22px;
+    border-radius: 20px;
 
     outline: none;
 
-    background:
-        rgba(255,255,255,0.13);
+    background: rgba(255,255,255,0.14);
 
     color: white;
 
-    font-size: 12px;
+    font-size: 11px;
 }
 
-.search-box input::placeholder {
+.search-container input::placeholder {
     color: rgba(255,255,255,0.7);
 }
 
-.search-box button {
-    height: 38px;
+.search-container button {
+    height: 34px;
 
-    padding: 0 17px;
+    padding: 0 15px;
 
     border: none;
 
-    border-radius: 22px;
+    border-radius: 20px;
 
     background: white;
 
@@ -648,21 +546,22 @@ body {
     cursor: pointer;
 }
 
-
-/* =====================================================
+/* =========================================
    PLAYLIST
-===================================================== */
+========================================= */
 
 .playlist {
     margin-top: 13px;
+
+    text-align: left;
 }
 
-.playlist-heading {
+.playlist-title {
     font-size: 11px;
 
-    margin-bottom: 6px;
+    font-weight: 600;
 
-    opacity: 0.9;
+    margin-bottom: 6px;
 }
 
 .playlist-item {
@@ -670,17 +569,17 @@ body {
 
     align-items: center;
 
-    gap: 10px;
+    gap: 8px;
 
-    width: 100%;
+    padding: 6px 9px;
 
-    padding: 7px 9px;
+    margin-bottom: 2px;
 
-    border-radius: 7px;
-
-    cursor: pointer;
+    border-radius: 6px;
 
     font-size: 11px;
+
+    cursor: pointer;
 
     transition: 0.2s;
 }
@@ -690,311 +589,300 @@ body {
 }
 
 .playlist-item.active {
-    background: rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.22);
 }
 
-.playlist-number {
-    width: 18px;
+/* =========================================
+   QUOTE
+========================================= */
 
-    opacity: 0.7;
+.quote {
+    position: absolute;
+
+    left: 55px;
+    bottom: 70px;
+
+    z-index: 4;
+
+    max-width: 430px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 20px;
+
+    line-height: 1.7;
+
+    color: #f5dfaa;
 }
 
-.playlist-name {
-    flex: 1;
+.quote-author {
+    display: block;
+
+    margin-top: 8px;
+
+    font-size: 15px;
+
+    font-style: italic;
 }
 
-
-/* =====================================================
+/* =========================================
    SIGNATURE
-===================================================== */
+========================================= */
 
 .signature {
     position: absolute;
 
-    right: 52px;
+    right: 55px;
+    bottom: 45px;
 
-    bottom: 48px;
+    z-index: 4;
 
-    z-index: 5;
+    font-family: Georgia, serif;
 
-    font-family: "Cormorant Garamond", serif;
+    font-size: 20px;
 
     font-style: italic;
 
-    font-size: 22px;
-
-    letter-spacing: 1px;
+    color: #f0d18a;
 }
 
-.signature span {
-    display: block;
+/* =========================================
+   DAY MODE
+========================================= */
 
-    width: 100%;
-
-    height: 1px;
-
-    margin-top: 3px;
-
-    background: rgba(255,255,255,0.5);
+body.day .hero {
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,0.20),
+            rgba(0,0,0,0.32)
+        ),
+        url("assets/bike-day-desktop.png");
 }
 
+/* =========================================
+   NIGHT MODE
+========================================= */
 
-/* =====================================================
-   TABLET
-===================================================== */
-
-@media (max-width: 900px) {
-
-    .intro {
-        top: 25%;
-    }
-
-    .intro h1 {
-        font-size: clamp(50px, 10vw, 80px);
-    }
-
-    .music-player {
-        bottom: 5%;
-    }
-
-    .quote {
-        left: 30px;
-
-        bottom: 35px;
-    }
-
-    .signature {
-        right: 30px;
-
-        bottom: 25px;
-    }
+body.night .hero {
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,0.42),
+            rgba(0,0,0,0.58)
+        ),
+        url("assets/bike-night-desktop.png");
 }
 
-
-/* =====================================================
+/* =========================================
    MOBILE
-===================================================== */
+========================================= */
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
+
+    body {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 
     .hero {
         min-height: 100vh;
 
         background-image:
             linear-gradient(
-                rgba(0,0,0,0.3),
-                rgba(0,0,0,0.55)
+                rgba(0,0,0,0.25),
+                rgba(0,0,0,0.4)
             ),
             url("assets/bike-day-mobile.png");
 
         background-position: center;
     }
 
-    .hero.night {
-        background-image:
-            linear-gradient(
-                rgba(0,0,0,0.45),
-                rgba(0,0,0,0.65)
-            ),
-            url("assets/bike-night-mobile.png");
-    }
-
-
-    /* CLOCK */
-
-    .clock {
+    .top-left {
         top: 20px;
-
         left: 20px;
     }
 
-    #time {
-        font-size: 18px;
-
-        letter-spacing: 4px;
+    .clock {
+        font-size: 17px;
+        letter-spacing: 3px;
     }
 
-    .clock-line {
-        width: 115px;
-
-        margin: 7px 0;
-    }
-
-    .clock span {
+    .location {
         font-size: 9px;
-
         letter-spacing: 2px;
     }
 
-
-    /* THEME */
-
-    .theme-switch {
+    .theme-toggle {
         top: 18px;
-
         right: 18px;
     }
 
     .theme-btn {
-        padding: 9px 12px;
+        padding: 8px 11px;
 
-        font-size: 10px;
+        font-size: 9px;
 
         letter-spacing: 1px;
     }
 
-
-    /* TITLE */
-
-    .intro {
-        top: 20%;
-
-        width: 95%;
+    .hero-content {
+        padding-top: 22vh;
     }
 
     .eyebrow {
         font-size: 8px;
-
-        letter-spacing: 4px;
-
-        margin-bottom: 14px;
+        letter-spacing: 3px;
     }
 
-    .intro h1 {
+    .title {
         font-size: 43px;
-
-        line-height: 0.95;
+        letter-spacing: 1px;
     }
 
-    .intro h1 em {
-        margin-top: 8px;
-
-        font-size: 0.9em;
-    }
-
-    .title-line {
-        margin: 12px auto 8px;
+    .title-italic {
+        font-size: 34px;
+        margin-top: 5px;
     }
 
     .subtitle {
         font-size: 9px;
+        letter-spacing: 2px;
 
-        letter-spacing: 3px;
+        margin-top: 15px;
     }
 
-
-    /* QUOTE */
-
-    .quote {
-        left: 20px;
-
-        bottom: 20px;
-
-        display: none;
+    .heart-line {
+        gap: 10px;
     }
 
-
-    /* PLAYER */
+    .heart-line::before,
+    .heart-line::after {
+        width: 55px;
+    }
 
     .music-player {
-        width: 330px;
+        width: 320px;
 
         max-width: 88vw;
 
-        bottom: 4%;
+        padding: 15px 17px;
 
-        padding: 17px 19px 18px;
+        margin-top: 22px;
 
-        border-radius: 22px;
+        border-radius: 20px;
     }
 
-    .player-label {
+    .now-playing {
         font-size: 8px;
-
         letter-spacing: 3px;
-
-        margin-bottom: 11px;
     }
 
     .song-cover {
-        width: 55px;
-
-        height: 55px;
+        width: 50px;
+        height: 50px;
     }
 
-    .song-details h2 {
+    .song-title {
         font-size: 15px;
     }
 
-    .song-details p {
-        font-size: 11px;
-    }
-
-    .heart-btn {
-        font-size: 20px;
-    }
-
-    .controls {
-        gap: 23px;
-
-        margin: 11px 0;
-    }
-
-    .control-btn {
-        font-size: 16px;
-    }
-
-    .play-btn {
-        width: 44px;
-
-        height: 44px;
-
-        font-size: 15px;
-    }
-
-    .search-box input,
-    .search-box button {
-        height: 34px;
-    }
-
-    .playlist-item {
-        padding: 6px 8px;
-
+    .song-artist {
         font-size: 10px;
     }
 
-
-    /* SIGNATURE */
-
-    .signature {
-        display: none;
-    }
-}
-
-
-/* =====================================================
-   VERY SMALL PHONES
-===================================================== */
-
-@media (max-width: 380px) {
-
-    .music-player {
-        width: 300px;
-
-        padding: 15px;
+    .player-controls {
+        gap: 22px;
     }
 
-    .song-cover {
-        width: 48px;
+    .play-btn {
+        width: 40px;
+        height: 40px;
 
-        height: 48px;
+        font-size: 15px;
     }
 
-    .song-details h2 {
+    .control-btn {
         font-size: 14px;
     }
 
-    .intro h1 {
-        font-size: 37px;
+    .search-container input {
+        height: 32px;
+        font-size: 10px;
+    }
+
+    .search-container button {
+        height: 32px;
+        padding: 0 12px;
+        font-size: 10px;
+    }
+
+    .playlist-item {
+        font-size: 10px;
+        padding: 6px 7px;
+    }
+
+    .quote {
+        left: 20px;
+        bottom: 25px;
+
+        max-width: 270px;
+
+        font-size: 13px;
+
+        line-height: 1.5;
+    }
+
+    .quote-author {
+        font-size: 11px;
+    }
+
+    .signature {
+        right: 20px;
+        bottom: 18px;
+
+        font-size: 13px;
+    }
+}
+
+/* =========================================
+   VERY SMALL PHONES
+========================================= */
+
+@media (max-width: 380px) {
+
+    .hero-content {
+        padding-top: 19vh;
+    }
+
+    .title {
+        font-size: 36px;
+    }
+
+    .title-italic {
+        font-size: 29px;
+    }
+
+    .music-player {
+        width: 290px;
+
+        padding: 13px 14px;
+
+        margin-top: 18px;
+    }
+
+    .song-cover {
+        width: 45px;
+        height: 45px;
+    }
+
+    .player-controls {
+        gap: 18px;
+    }
+
+    .quote {
+        display: none;
+    }
+
+    .signature {
+        display: none;
     }
 }
