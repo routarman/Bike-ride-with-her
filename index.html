@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Long Drive With Her — Now Playing Overlay</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Cormorant+Garamond:ital@1&family=Jost:wght@300;400;500;600&display=swap');
@@ -28,6 +29,7 @@
     align-items:center;
     justify-content:center;
     min-height:100vh;
+    min-height:100dvh;
     padding:24px;
   }
 
@@ -45,6 +47,7 @@
       linear-gradient(180deg, rgba(8,10,14,0.15) 0%, rgba(8,10,14,0.05) 30%, rgba(10,8,6,0.55) 78%, rgba(6,5,4,0.85) 100%),
       linear-gradient(160deg, #4a5f6e 0%, #6b7f82 18%, #8a8f76 32%, #4f5540 48%, #3a3f30 60%, #26241d 78%, #17140f 100%);
     box-shadow:0 30px 80px rgba(0,0,0,0.6);
+    transition:border-radius .2s ease;
   }
 
   /* faint road + silhouette suggestion, purely decorative gradients */
@@ -65,7 +68,15 @@
     pointer-events:none;
   }
 
-  .layer{ position:absolute; inset:0; padding:clamp(20px,3.5vw,44px); display:flex; flex-direction:column; justify-content:space-between; }
+  .layer{
+    position:absolute; inset:0;
+    padding:clamp(20px,3.5vw,44px);
+    padding-top:calc(clamp(20px,3.5vw,44px) + env(safe-area-inset-top));
+    padding-bottom:calc(clamp(20px,3.5vw,44px) + env(safe-area-inset-bottom));
+    padding-left:calc(clamp(20px,3.5vw,44px) + env(safe-area-inset-left));
+    padding-right:calc(clamp(20px,3.5vw,44px) + env(safe-area-inset-right));
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
 
   /* ---------- Top bar ---------- */
   .top-bar{
@@ -304,9 +315,66 @@
     opacity:0.9;
   }
 
-  @media (max-width:560px){
-    .footer{ flex-direction:column; align-items:flex-start; gap:14px; }
-    .top-bar{ flex-direction:column; gap:14px; }
+  /* =========================================================
+     RESPONSIVE — desktop (default) → tablet → phone → small phone
+     ========================================================= */
+
+  /* Tablet / small laptop */
+  @media (max-width:900px){
+    body{ padding:16px; }
+    .poster{ border-radius:10px; }
+    .player{ width:min(280px, 85%); }
+    .quote{ max-width:300px; }
+  }
+
+  /* Phone — poster goes edge-to-edge and fills the screen height,
+     landscape aspect-ratio is dropped in favor of the device's own shape */
+  @media (max-width:680px){
+    body{ padding:0; }
+    .poster{
+      width:100vw;
+      max-width:none;
+      aspect-ratio:auto;
+      height:100vh;
+      height:100dvh;
+      border-radius:0;
+      box-shadow:none;
+    }
+
+    .top-bar{ flex-direction:row; align-items:center; }
+    .clock .time{ font-size:18px; letter-spacing:0.14em; }
+    .clock .rule{ width:40px; margin:5px 0; }
+    .clock .locale{ font-size:9.5px; }
+
+    .toggle button{ padding:7px 12px; font-size:11px; gap:6px; }
+
+    .hero .line1{ font-size:clamp(34px,11vw,48px); }
+    .hero .line2{ font-size:clamp(24px,8vw,34px); }
+    .hero .tagline{ font-size:12px; letter-spacing:0.08em; }
+    .hero .divider::before,
+    .hero .divider::after{ width:38px; }
+
+    .player{ width:min(280px, 88%); }
+    .track-meta .title{ font-size:19px; }
+
+    .footer{ flex-direction:column; align-items:flex-start; gap:16px; padding-top:18px; }
+    .quote{ max-width:100%; font-size:14.5px; }
+    .signature{ font-size:17px; align-self:flex-end; }
+  }
+
+  /* Small phones */
+  @media (max-width:380px){
+    .layer{ padding:16px; padding-top:calc(16px + env(safe-area-inset-top)); padding-bottom:calc(16px + env(safe-area-inset-bottom)); }
+    .hero .line1{ font-size:30px; }
+    .hero .line2{ font-size:22px; }
+    .toggle button{ padding:6px 10px; font-size:10px; }
+    .controls{ gap:22px; }
+    .player{ width:92%; }
+  }
+
+  /* Large desktop / wide screens — let the poster breathe more */
+  @media (min-width:1400px){
+    .poster{ max-width:1320px; }
   }
 </style>
 </head>
