@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Long Drive With Her</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="background"></div>
+
+    <!-- Day / Night Button -->
+    <button id="themeToggle" class="theme-toggle">
+        ☾ NIGHT
+    </button>
+
+    <!-- Main Content -->
+    <main class="hero">
+
+        <p class="eyebrow">A JOURNEY MADE FOR TWO</p>
+
+        <h1>Long Drive With Her</h1>
+
+        <p class="subtitle">
+            Some roads are better when she's beside you.
+        </p>
+
+        <div class="quote">
+            <span>“</span>
+            <p>कुछ रास्ते मंज़िल के लिए नहीं, किसी के साथ चलने के लिए होते हैं।</p>
+            <span>♡</span>
+        </div>
+
+        <!-- Music Player -->
+        <section class="music-player">
+
+            <p class="player-label">NOW PLAYING</p>
+
+            <h2 id="songTitle">Song 1</h2>
+
+            <p id="songArtist">♫</p>
+
+            <!-- Hidden YouTube player -->
+            <div id="youtube-container">
+                <div id="youtube-player"></div>
+            </div>
+
+            <!-- Progress -->
+            <div class="time-row">
+                <span id="currentTime">00:00</span>
+
+                <input
+                    type="range"
+                    id="progress"
+                    min="0"
+                    max="100"
+                    value="0"
+                >
+
+                <span id="duration">00:00</span>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls">
+
+                <button id="previousBtn" class="control-btn">
+                    ⏮
+                </button>
+
+                <button id="playBtn" class="play-btn">
+                    ▶
+                </button>
+
+                <button id="nextBtn" class="control-btn">
+                    ⏭
+                </button>
+
+            </div>
+
+            <!-- Volume -->
+            <div class="volume-row">
+
+                <span>🔊</span>
+
+                <input
+                    type="range"
+                    id="volume"
+                    min="0"
+                    max="100"
+                    value="70"
+                >
+
+            </div>
+
+            <!-- Search -->
+            <div class="search-row">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search a song..."
+                >
+
+                <button id="searchBtn">
+                    Search
+                </button>
+
+            </div>
+
+            <!-- Playlist -->
+            <div class="playlist-title">
+                ♫ Playlist
+            </div>
+
+            <div id="playlist" class="playlist"></div>
+
+        </section>
+
+    </main>
+
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

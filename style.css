@@ -1,0 +1,548 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+    transition: background 0.5s ease;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+
+    background-image:
+        url("assets/bike-day-desktop.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    transition: background-image 0.5s ease;
+}
+
+.background::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: rgba(255, 255, 255, 0.35);
+
+    transition: background 0.5s ease;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 100vh;
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 70px 20px 60px;
+}
+
+.eyebrow {
+    font-size: 13px;
+    letter-spacing: 4px;
+
+    color: #555;
+
+    margin-bottom: 12px;
+}
+
+h1 {
+    font-size: clamp(38px, 6vw, 72px);
+
+    font-weight: 500;
+
+    color: #222;
+
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 18px;
+
+    color: #555;
+
+    margin-bottom: 35px;
+}
+
+/* =========================
+   QUOTE
+========================= */
+
+.quote {
+    max-width: 650px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    color: #444;
+
+    font-size: 17px;
+
+    margin-bottom: 35px;
+}
+
+.quote span {
+    font-size: 25px;
+}
+
+.quote p {
+    line-height: 1.6;
+}
+
+/* =========================
+   THEME BUTTON
+========================= */
+
+.theme-toggle {
+    position: fixed;
+
+    top: 20px;
+    left: 20px;
+
+    z-index: 20;
+
+    border: 1px solid rgba(0, 0, 0, 0.2);
+
+    background: rgba(255, 255, 255, 0.65);
+
+    backdrop-filter: blur(10px);
+
+    padding: 10px 16px;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+}
+
+/* =========================
+   MUSIC PLAYER
+========================= */
+
+.music-player {
+    width: min(100%, 380px);
+
+    padding: 25px;
+
+    border-radius: 25px;
+
+    background: rgba(110, 105, 110, 0.72);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.15);
+
+    color: white;
+
+    text-align: left;
+}
+
+.player-label {
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.8;
+
+    margin-bottom: 8px;
+}
+
+.music-player h2 {
+    font-size: 20px;
+
+    font-weight: 500;
+
+    margin-bottom: 5px;
+}
+
+#songArtist {
+    font-size: 13px;
+
+    opacity: 0.75;
+
+    margin-bottom: 15px;
+}
+
+/* =========================
+   HIDDEN YOUTUBE
+========================= */
+
+#youtube-container {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+#youtube-player {
+    width: 1px;
+    height: 1px;
+}
+
+/* =========================
+   PROGRESS
+========================= */
+
+.time-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 11px;
+}
+
+.time-row input {
+    flex: 1;
+}
+
+input[type="range"] {
+    appearance: none;
+
+    height: 4px;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.5);
+
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    cursor: pointer;
+}
+
+/* =========================
+   CONTROLS
+========================= */
+
+.controls {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 25px;
+
+    margin: 20px 0;
+}
+
+.control-btn,
+.play-btn {
+    border: none;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.65);
+
+    color: #444;
+
+    transition: transform 0.2s ease;
+}
+
+.control-btn {
+    width: 42px;
+    height: 42px;
+
+    font-size: 15px;
+}
+
+.play-btn {
+    width: 58px;
+    height: 58px;
+
+    font-size: 20px;
+}
+
+.control-btn:hover,
+.play-btn:hover {
+    transform: scale(1.08);
+}
+
+/* =========================
+   VOLUME
+========================= */
+
+.volume-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 18px;
+}
+
+.volume-row input {
+    flex: 1;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-row {
+    display: flex;
+
+    gap: 8px;
+}
+
+.search-row input {
+    min-width: 0;
+
+    flex: 1;
+
+    padding: 12px 14px;
+
+    border: none;
+
+    outline: none;
+
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.25);
+
+    color: white;
+}
+
+.search-row input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-row button {
+    border: none;
+
+    padding: 0 16px;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    background: white;
+
+    color: #555;
+}
+
+/* =========================
+   PLAYLIST
+========================= */
+
+.playlist-title {
+    margin-top: 20px;
+
+    margin-bottom: 10px;
+
+    font-size: 13px;
+}
+
+.playlist {
+    max-height: 170px;
+
+    overflow-y: auto;
+}
+
+.playlist-item {
+    padding: 10px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    transition: background 0.2s ease;
+}
+
+.playlist-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.playlist-item.active {
+    background: rgba(255, 255, 255, 0.22);
+}
+
+/* =========================
+   NIGHT MODE
+========================= */
+
+body.night .background {
+    background-image:
+        url("assets/bike-night-desktop.png");
+}
+
+body.night .background::after {
+    background: rgba(0, 0, 0, 0.38);
+}
+
+body.night h1,
+body.night .eyebrow,
+body.night .subtitle,
+body.night .quote {
+    color: white;
+}
+
+body.night .theme-toggle {
+    background: rgba(30, 30, 30, 0.65);
+
+    color: white;
+
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .hero {
+        padding: 75px 15px 40px;
+    }
+
+    .background {
+        background-image:
+            url("assets/bike-day-mobile.png");
+
+        background-position: center;
+    }
+
+    body.night .background {
+        background-image:
+            url("assets/bike-night-mobile.png");
+    }
+
+    .theme-toggle {
+        top: 14px;
+        left: 14px;
+    }
+
+    .eyebrow {
+        font-size: 10px;
+
+        letter-spacing: 2.5px;
+    }
+
+    h1 {
+        font-size: 38px;
+
+        line-height: 1.1;
+    }
+
+    .subtitle {
+        font-size: 15px;
+
+        margin-bottom: 25px;
+    }
+
+    .quote {
+        font-size: 14px;
+
+        max-width: 340px;
+
+        margin-bottom: 25px;
+    }
+
+    .music-player {
+        width: min(100%, 340px);
+
+        padding: 20px;
+
+        border-radius: 22px;
+    }
+
+    .controls {
+        gap: 18px;
+    }
+
+    .play-btn {
+        width: 54px;
+        height: 54px;
+    }
+
+    .control-btn {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 360px) {
+
+    .hero {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .music-player {
+        width: 100%;
+
+        padding: 17px;
+    }
+
+    h1 {
+        font-size: 34px;
+    }
+
+    .search-row button {
+        padding: 0 12px;
+    }
+}
