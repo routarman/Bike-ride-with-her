@@ -1,7 +1,6 @@
-/* =========================================================
-   LONG DRIVE WITH HER
-   CINEMATIC FULLSCREEN DESIGN
-   ========================================================= */
+/* =====================================================
+   RESET
+===================================================== */
 
 * {
     margin: 0;
@@ -13,211 +12,191 @@ html,
 body {
     width: 100%;
     height: 100%;
-    overflow: hidden;
 }
 
 body {
-    font-family: "Inter", "Segoe UI", sans-serif;
-    background: #111;
-    color: #fff;
-}
-
-/* =========================================================
-   MAIN PAGE
-   ========================================================= */
-
-.page {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    min-height: 650px;
     overflow: hidden;
 
-    background-image: url("assets/bike-day-desktop.png");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
+    font-family: "Inter", sans-serif;
 
-    transition: background-image 0.8s ease;
+    color: white;
+
+    background: #111;
 }
 
-/* Dark cinematic overlay */
 
-.page::before {
+/* =====================================================
+   HERO / BACKGROUND
+===================================================== */
+
+.hero {
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+
+    min-height: 650px;
+
+    overflow: hidden;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.35),
+            rgba(0, 0, 0, 0.48)
+        ),
+        url("assets/bike-day-desktop.png");
+
+    background-size: cover;
+    background-position: center;
+
+    transition:
+        background-image 0.5s ease;
+}
+
+
+/* DARK OVERLAY */
+
+.hero::after {
     content: "";
+
     position: absolute;
+
     inset: 0;
+
+    pointer-events: none;
 
     background:
         linear-gradient(
-            180deg,
-            rgba(0, 0, 0, 0.42) 0%,
-            rgba(0, 0, 0, 0.05) 38%,
-            rgba(0, 0, 0, 0.22) 65%,
-            rgba(0, 0, 0, 0.62) 100%
+            to bottom,
+            rgba(0,0,0,0.25),
+            transparent 35%,
+            rgba(0,0,0,0.45)
         );
-
-    z-index: 1;
-    pointer-events: none;
-}
-
-/* Slight cinematic vignette */
-
-.page::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            transparent 42%,
-            rgba(0, 0, 0, 0.28) 100%
-        );
-
-    z-index: 2;
-    pointer-events: none;
 }
 
 
-/* =========================================================
-   CONTENT WRAPPER
-   ========================================================= */
+/* =====================================================
+   NIGHT MODE
+===================================================== */
 
-.content {
-    position: relative;
-    z-index: 5;
-
-    width: 100%;
-    height: 100%;
+.hero.night {
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.48),
+            rgba(0, 0, 0, 0.62)
+        ),
+        url("assets/bike-night-desktop.png");
 }
 
 
-/* =========================================================
+/* =====================================================
    CLOCK
-   ========================================================= */
+===================================================== */
 
-.clock-container {
+.clock {
     position: absolute;
+
     top: 48px;
     left: 52px;
 
-    z-index: 10;
-
-    color: #fff;
+    z-index: 5;
 }
 
-.clock {
-    font-family: "Courier New", monospace;
+#time {
+    font-family: "Inter", sans-serif;
 
-    font-size: 30px;
-    font-weight: 400;
+    font-size: 28px;
+
+    font-weight: 300;
 
     letter-spacing: 7px;
-
-    white-space: nowrap;
-
-    text-shadow:
-        0 2px 12px rgba(0, 0, 0, 0.5);
 }
 
 .clock-line {
     width: 180px;
+
     height: 1px;
 
-    margin-top: 10px;
+    margin: 12px 0;
 
-    background: rgba(255, 255, 255, 0.65);
+    background: rgba(255,255,255,0.65);
 }
 
-.clock-location {
-    margin-top: 12px;
+.clock span {
+    font-size: 12px;
 
-    font-size: 14px;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
 
-    color: rgba(255, 255, 255, 0.8);
+    opacity: 0.85;
 }
 
 
-/* =========================================================
-   DAY / NIGHT SWITCH
-   ========================================================= */
+/* =====================================================
+   DAY NIGHT SWITCH
+===================================================== */
 
 .theme-switch {
     position: absolute;
-    top: 46px;
-    right: 48px;
 
-    z-index: 20;
+    top: 46px;
+    right: 52px;
+
+    z-index: 10;
 
     display: flex;
-    align-items: center;
 
-    height: 64px;
+    padding: 3px;
 
-    padding: 5px;
+    border: 1px solid rgba(255,255,255,0.3);
 
-    border: 1px solid rgba(255, 255, 255, 0.35);
     border-radius: 40px;
 
-    background: rgba(20, 20, 20, 0.28);
+    background: rgba(0,0,0,0.22);
 
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-
-    box-shadow:
-        0 10px 35px rgba(0, 0, 0, 0.25);
-
-    overflow: hidden;
 }
 
 .theme-btn {
-    height: 52px;
-
-    padding: 0 28px;
-
     border: none;
-    border-radius: 30px;
+
+    color: white;
 
     background: transparent;
 
-    color: rgba(255, 255, 255, 0.9);
+    padding: 13px 24px;
 
-    font-size: 15px;
-    letter-spacing: 2px;
+    border-radius: 30px;
 
     cursor: pointer;
 
-    transition:
-        background 0.35s ease,
-        color 0.35s ease,
-        box-shadow 0.35s ease;
-}
+    font-size: 13px;
 
-.theme-btn span {
-    margin-right: 8px;
+    letter-spacing: 2px;
+
+    transition: 0.3s;
 }
 
 .theme-btn.active {
-    background: rgba(255, 255, 255, 0.12);
-
-    color: #fff;
+    background: rgba(255,255,255,0.16);
 
     box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.45),
-        0 0 20px rgba(255, 214, 130, 0.12);
+        inset 0 0 0 1px rgba(255,255,255,0.6);
+
+    color: #fff;
 }
 
 
-/* =========================================================
-   HERO TITLE
-   ========================================================= */
+/* =====================================================
+   INTRO
+===================================================== */
 
-.hero {
+.intro {
     position: absolute;
 
-    top: 28%;
+    z-index: 3;
+
+    top: 27%;
+
     left: 50%;
 
     transform: translateX(-50%);
@@ -225,242 +204,208 @@ body {
     width: 90%;
 
     text-align: center;
-
-    z-index: 8;
 }
 
 .eyebrow {
-    margin-bottom: 18px;
+    font-size: 12px;
 
-    font-size: 13px;
-    letter-spacing: 8px;
+    letter-spacing: 7px;
 
-    text-transform: uppercase;
+    font-weight: 400;
 
-    color: rgba(255, 255, 255, 0.75);
+    opacity: 0.8;
 
-    text-shadow:
-        0 2px 12px rgba(0, 0, 0, 0.7);
+    margin-bottom: 22px;
 }
 
-.hero-title {
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
-
-    line-height: 0.88;
-
-    font-size: clamp(65px, 8vw, 120px);
+.intro h1 {
+    font-family: "Inter", sans-serif;
 
     font-weight: 300;
 
+    font-size: clamp(60px, 7vw, 100px);
+
+    line-height: 0.92;
+
     letter-spacing: 3px;
 
-    color: #fff;
-
     text-shadow:
-        0 4px 25px rgba(0, 0, 0, 0.55);
+        0 4px 20px rgba(0,0,0,0.4);
 }
 
-.hero-title .with-her {
-    margin-top: 12px;
+.intro h1 em {
+    display: block;
 
-    font-family: Georgia, "Times New Roman", serif;
+    margin-top: 15px;
 
-    font-size: 0.72em;
+    font-family: "Cormorant Garamond", serif;
 
-    font-style: italic;
-    font-weight: 400;
+    font-size: 0.82em;
 
-    letter-spacing: 4px;
+    font-weight: 500;
+
+    letter-spacing: 3px;
 }
 
-.hero-subtitle {
-    margin-top: 28px;
-
-    font-size: 16px;
-
-    letter-spacing: 5px;
-
-    color: rgba(255, 255, 255, 0.82);
-
-    text-shadow:
-        0 2px 10px rgba(0, 0, 0, 0.7);
-}
-
-
-/* =========================================================
-   DECORATIVE HEART LINE
-   ========================================================= */
-
-.hero-divider {
+.title-line {
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     gap: 18px;
 
-    margin-top: 20px;
+    margin: 20px auto 12px;
+
+    width: 460px;
+
+    max-width: 80%;
 }
 
-.hero-divider::before,
-.hero-divider::after {
-    content: "";
-
-    width: 180px;
-    max-width: 20vw;
-
+.title-line span {
     height: 1px;
 
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255, 255, 255, 0.5)
-        );
+    flex: 1;
+
+    background: rgba(255,255,255,0.35);
 }
 
-.hero-divider::after {
-    background:
-        linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0.5),
-            transparent
-        );
+.title-line b {
+    font-size: 22px;
+
+    font-weight: 300;
 }
 
-.hero-heart {
-    font-size: 24px;
+.subtitle {
+    font-size: 15px;
 
-    color: #f8dc9b;
+    letter-spacing: 5px;
 
-    text-shadow:
-        0 0 15px rgba(255, 220, 155, 0.4);
+    opacity: 0.9;
 }
 
 
-/* =========================================================
+/* =====================================================
    QUOTE
-   ========================================================= */
+===================================================== */
 
 .quote {
     position: absolute;
 
     left: 52px;
-    bottom: 82px;
+    bottom: 78px;
 
-    z-index: 10;
+    z-index: 5;
 
-    max-width: 430px;
-
-    color: #f7e4ae;
-
-    font-family: Georgia, "Times New Roman", serif;
-
-    font-size: 20px;
-
-    line-height: 1.7;
-
-    text-shadow:
-        0 3px 12px rgba(0, 0, 0, 0.7);
+    font-family: "Cormorant Garamond", serif;
 }
 
-.quote-mark {
-    font-size: 36px;
-    line-height: 0;
+.quote p {
+    font-size: 24px;
+
+    line-height: 1.45;
+
+    font-weight: 500;
 }
 
-.quote-author {
+.quote span {
     display: block;
 
-    margin-top: 14px;
+    margin-top: 12px;
 
-    font-size: 18px;
+    font-size: 17px;
 
     font-style: italic;
 
-    letter-spacing: 1px;
+    color: rgba(255,255,255,0.85);
 }
 
 
-/* =========================================================
+/* =====================================================
    MUSIC PLAYER
-   ========================================================= */
+===================================================== */
 
 .music-player {
     position: absolute;
 
+    z-index: 20;
+
     left: 50%;
-    bottom: 58px;
+
+    bottom: 8%;
 
     transform: translateX(-50%);
 
-    z-index: 20;
+    width: 430px;
 
-    width: min(520px, 90vw);
+    max-width: 88vw;
 
-    padding: 22px 30px 25px;
+    padding: 20px 27px 22px;
 
-    border: 1px solid rgba(255, 221, 160, 0.38);
+    border: 1px solid rgba(255,255,255,0.38);
 
-    border-radius: 30px;
+    border-radius: 28px;
 
     background:
-        linear-gradient(
-            135deg,
-            rgba(20, 20, 18, 0.72),
-            rgba(10, 10, 9, 0.52)
-        );
+        rgba(15,15,15,0.43);
 
     backdrop-filter: blur(20px);
+
     -webkit-backdrop-filter: blur(20px);
 
     box-shadow:
-        0 20px 70px rgba(0, 0, 0, 0.45),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        0 25px 60px rgba(0,0,0,0.35),
+        inset 0 1px 0 rgba(255,255,255,0.12);
+
+    color: white;
 }
 
 
-/* Player heading */
+/* PLAYER TITLE */
 
-.player-heading {
+.player-label {
     text-align: center;
 
-    margin-bottom: 15px;
-
-    font-size: 12px;
+    font-size: 10px;
 
     letter-spacing: 4px;
 
-    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 15px;
+
+    opacity: 0.85;
 }
 
 
-/* =========================================================
-   SONG INFORMATION
-   ========================================================= */
+/* =====================================================
+   SONG INFO
+===================================================== */
 
 .song-info {
     display: flex;
 
     align-items: center;
 
-    gap: 20px;
+    gap: 15px;
+
+    margin-bottom: 14px;
 }
 
 .song-cover {
-    width: 90px;
-    height: 90px;
+    width: 70px;
+
+    height: 70px;
 
     flex-shrink: 0;
 
     object-fit: cover;
 
-    border-radius: 8px;
+    border-radius: 10px;
+
+    background: rgba(255,255,255,0.1);
 
     box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.4);
+        0 5px 20px rgba(0,0,0,0.3);
 }
 
 .song-details {
@@ -469,102 +414,104 @@ body {
     min-width: 0;
 }
 
-.song-title {
-    font-size: 22px;
+.song-details h2 {
+    font-size: 18px;
 
     font-weight: 500;
 
+    margin-bottom: 5px;
+
     white-space: nowrap;
+
     overflow: hidden;
+
     text-overflow: ellipsis;
-
-    color: #fff;
 }
 
-.song-artist {
-    margin-top: 8px;
+.song-details p {
+    font-size: 13px;
 
-    font-size: 15px;
-
-    color: rgba(255, 255, 255, 0.75);
+    opacity: 0.7;
 }
 
 
-/* Favorite button */
+/* HEART */
 
-.favorite-btn {
-    width: 42px;
-    height: 42px;
-
-    flex-shrink: 0;
-
+.heart-btn {
     border: none;
 
     background: transparent;
 
-    color: #f8e2ad;
+    color: white;
 
-    font-size: 27px;
+    font-size: 24px;
 
     cursor: pointer;
 
-    transition:
-        transform 0.2s ease,
-        color 0.2s ease;
+    transition: 0.2s;
 }
 
-.favorite-btn:hover {
+.heart-btn:hover {
     transform: scale(1.15);
 }
 
+.heart-btn.liked {
+    color: #fff;
 
-/* =========================================================
-   PROGRESS BAR
-   ========================================================= */
-
-.progress-container {
-    margin-top: 20px;
+    transform: scale(1.1);
 }
 
-.progress-bar {
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+.progress-area {
     width: 100%;
+}
+
+.progress {
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    width: 100%;
+
     height: 3px;
 
-    appearance: none;
-    -webkit-appearance: none;
+    border-radius: 20px;
 
-    border-radius: 10px;
-
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255,255,255,0.3);
 
     cursor: pointer;
 }
 
-.progress-bar::-webkit-slider-thumb {
+.progress::-webkit-slider-thumb {
     appearance: none;
+
     -webkit-appearance: none;
 
-    width: 14px;
-    height: 14px;
+    width: 11px;
+
+    height: 11px;
 
     border-radius: 50%;
 
-    background: #f8dfa4;
-
-    box-shadow:
-        0 0 10px rgba(255, 222, 156, 0.5);
+    background: white;
 
     cursor: pointer;
 }
 
-.progress-bar::-moz-range-thumb {
-    width: 14px;
-    height: 14px;
+.progress::-moz-range-thumb {
+    width: 11px;
+
+    height: 11px;
 
     border: none;
+
     border-radius: 50%;
 
-    background: #f8dfa4;
+    background: white;
 
     cursor: pointer;
 }
@@ -574,174 +521,148 @@ body {
 
     justify-content: space-between;
 
-    margin-top: 8px;
+    margin-top: 5px;
 
-    font-family: "Courier New", monospace;
+    font-size: 10px;
 
-    font-size: 11px;
-
-    color: rgba(255, 255, 255, 0.8);
+    opacity: 0.7;
 }
 
 
-/* =========================================================
-   PLAYER CONTROLS
-   ========================================================= */
+/* =====================================================
+   CONTROLS
+===================================================== */
 
 .controls {
     display: flex;
 
-    align-items: center;
     justify-content: center;
 
-    gap: 45px;
+    align-items: center;
 
-    margin-top: 15px;
+    gap: 30px;
+
+    margin: 15px 0;
 }
 
-.control-btn {
-    width: 42px;
-    height: 42px;
-
+.control-btn,
+.play-btn {
     border: none;
 
-    border-radius: 50%;
+    color: white;
 
     background: transparent;
 
-    color: #fff;
-
-    font-size: 23px;
-
     cursor: pointer;
 
-    transition:
-        transform 0.2s ease,
-        opacity 0.2s ease;
+    transition: 0.2s;
+}
+
+.control-btn {
+    font-size: 18px;
 }
 
 .control-btn:hover {
-    transform: scale(1.12);
+    transform: scale(1.15);
 }
 
 .play-btn {
-    width: 58px;
-    height: 58px;
+    width: 52px;
 
-    border: 1px solid #f7dda3;
+    height: 52px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border: 1px solid rgba(255,255,255,0.8);
 
     border-radius: 50%;
 
-    background: rgba(255, 255, 255, 0.04);
-
-    color: #fff;
-
-    font-size: 24px;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 0 18px rgba(248, 221, 163, 0.12);
-
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease;
+    font-size: 18px;
 }
 
 .play-btn:hover {
-    transform: scale(1.08);
+    background: rgba(255,255,255,0.12);
 
-    background: rgba(255, 255, 255, 0.12);
+    transform: scale(1.05);
 }
 
 
-/* =========================================================
+/* =====================================================
    SEARCH
-   ========================================================= */
+===================================================== */
 
-.search-container {
+.search-box {
     display: flex;
 
     gap: 8px;
 
-    margin-top: 20px;
+    margin-top: 7px;
 }
 
-.search-input {
+.search-box input {
     flex: 1;
 
     min-width: 0;
 
-    height: 42px;
+    height: 38px;
 
-    padding: 0 18px;
+    padding: 0 15px;
 
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255,255,255,0.25);
 
-    border-radius: 25px;
+    border-radius: 22px;
 
     outline: none;
 
-    background: rgba(255, 255, 255, 0.12);
+    background:
+        rgba(255,255,255,0.13);
 
-    color: #fff;
+    color: white;
 
-    font-size: 13px;
-
-    backdrop-filter: blur(10px);
+    font-size: 12px;
 }
 
-.search-input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+.search-box input::placeholder {
+    color: rgba(255,255,255,0.7);
 }
 
-.search-input:focus {
-    border-color: rgba(248, 221, 163, 0.5);
-}
+.search-box button {
+    height: 38px;
 
-.search-btn {
-    height: 42px;
-
-    padding: 0 22px;
+    padding: 0 17px;
 
     border: none;
 
-    border-radius: 25px;
+    border-radius: 22px;
 
-    background: rgba(255, 255, 255, 0.85);
+    background: white;
 
     color: #222;
 
-    font-weight: 500;
+    font-size: 11px;
 
     cursor: pointer;
-
-    transition: transform 0.2s ease;
-}
-
-.search-btn:hover {
-    transform: scale(1.04);
 }
 
 
-/* =========================================================
+/* =====================================================
    PLAYLIST
-   ========================================================= */
+===================================================== */
 
 .playlist {
-    margin-top: 15px;
-
-    max-height: 130px;
-
-    overflow-y: auto;
+    margin-top: 13px;
 }
 
-.playlist-title {
-    margin-bottom: 8px;
+.playlist-heading {
+    font-size: 11px;
 
-    font-size: 13px;
+    margin-bottom: 6px;
 
-    color: rgba(255, 255, 255, 0.85);
+    opacity: 0.9;
 }
 
 .playlist-item {
@@ -749,255 +670,301 @@ body {
 
     align-items: center;
 
-    padding: 9px 10px;
+    gap: 10px;
 
-    border-radius: 8px;
+    width: 100%;
+
+    padding: 7px 9px;
+
+    border-radius: 7px;
 
     cursor: pointer;
 
-    transition:
-        background 0.2s ease;
+    font-size: 11px;
+
+    transition: 0.2s;
 }
 
 .playlist-item:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255,255,255,0.1);
 }
 
 .playlist-item.active {
-    background: rgba(255, 221, 160, 0.1);
+    background: rgba(255,255,255,0.18);
 }
 
 .playlist-number {
-    width: 30px;
+    width: 18px;
 
-    color: rgba(255, 255, 255, 0.6);
-
-    font-size: 12px;
+    opacity: 0.7;
 }
 
 .playlist-name {
-    font-size: 13px;
-
-    color: rgba(255, 255, 255, 0.9);
+    flex: 1;
 }
 
 
-/* =========================================================
+/* =====================================================
    SIGNATURE
-   ========================================================= */
+===================================================== */
 
 .signature {
     position: absolute;
 
     right: 52px;
+
     bottom: 48px;
 
-    z-index: 10;
+    z-index: 5;
 
-    color: #f1d895;
-
-    font-family: Georgia, "Times New Roman", serif;
-
-    font-size: 22px;
+    font-family: "Cormorant Garamond", serif;
 
     font-style: italic;
 
-    text-decoration: underline;
+    font-size: 22px;
 
-    text-decoration-thickness: 1px;
+    letter-spacing: 1px;
+}
 
-    text-underline-offset: 7px;
+.signature span {
+    display: block;
 
-    text-shadow:
-        0 3px 12px rgba(0, 0, 0, 0.7);
+    width: 100%;
+
+    height: 1px;
+
+    margin-top: 3px;
+
+    background: rgba(255,255,255,0.5);
 }
 
 
-/* =========================================================
-   NIGHT MODE
-   ========================================================= */
-
-body.night .page {
-    background-image: url("assets/bike-night-desktop.png");
-}
-
-body.night .page::before {
-    background:
-        linear-gradient(
-            180deg,
-            rgba(0, 0, 0, 0.55) 0%,
-            rgba(0, 0, 0, 0.2) 40%,
-            rgba(0, 0, 0, 0.65) 100%
-        );
-}
-
-
-/* =========================================================
-   SCROLLBAR
-   ========================================================= */
-
-::-webkit-scrollbar {
-    width: 4px;
-}
-
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.25);
-
-    border-radius: 10px;
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
+/* =====================================================
+   TABLET
+===================================================== */
 
 @media (max-width: 900px) {
 
-    html,
-    body {
-        overflow-y: auto;
+    .intro {
+        top: 25%;
     }
 
-    .page {
+    .intro h1 {
+        font-size: clamp(50px, 10vw, 80px);
+    }
+
+    .music-player {
+        bottom: 5%;
+    }
+
+    .quote {
+        left: 30px;
+
+        bottom: 35px;
+    }
+
+    .signature {
+        right: 30px;
+
+        bottom: 25px;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .hero {
         min-height: 100vh;
 
-        background-image: url("assets/bike-day-mobile.png");
+        background-image:
+            linear-gradient(
+                rgba(0,0,0,0.3),
+                rgba(0,0,0,0.55)
+            ),
+            url("assets/bike-day-mobile.png");
 
-        background-position: center center;
+        background-position: center;
     }
 
-    body.night .page {
-        background-image: url("assets/bike-night-mobile.png");
+    .hero.night {
+        background-image:
+            linear-gradient(
+                rgba(0,0,0,0.45),
+                rgba(0,0,0,0.65)
+            ),
+            url("assets/bike-night-mobile.png");
     }
 
-    .clock-container {
-        top: 25px;
-        left: 25px;
-    }
+
+    /* CLOCK */
 
     .clock {
-        font-size: 19px;
+        top: 20px;
+
+        left: 20px;
+    }
+
+    #time {
+        font-size: 18px;
 
         letter-spacing: 4px;
     }
 
     .clock-line {
-        width: 125px;
+        width: 115px;
+
+        margin: 7px 0;
     }
 
-    .clock-location {
-        font-size: 10px;
+    .clock span {
+        font-size: 9px;
 
         letter-spacing: 2px;
     }
 
-    .theme-switch {
-        top: 22px;
-        right: 20px;
 
-        height: 50px;
+    /* THEME */
+
+    .theme-switch {
+        top: 18px;
+
+        right: 18px;
     }
 
     .theme-btn {
-        height: 40px;
-
-        padding: 0 14px;
+        padding: 9px 12px;
 
         font-size: 10px;
 
         letter-spacing: 1px;
     }
 
-    .hero {
-        top: 22%;
+
+    /* TITLE */
+
+    .intro {
+        top: 20%;
+
+        width: 95%;
     }
 
     .eyebrow {
         font-size: 8px;
 
         letter-spacing: 4px;
+
+        margin-bottom: 14px;
     }
 
-    .hero-title {
-        font-size: clamp(48px, 15vw, 82px);
+    .intro h1 {
+        font-size: 43px;
 
-        letter-spacing: 1px;
+        line-height: 0.95;
     }
 
-    .hero-title .with-her {
+    .intro h1 em {
         margin-top: 8px;
 
-        letter-spacing: 2px;
+        font-size: 0.9em;
     }
 
-    .hero-subtitle {
-        margin-top: 18px;
+    .title-line {
+        margin: 12px auto 8px;
+    }
 
-        font-size: 11px;
+    .subtitle {
+        font-size: 9px;
 
         letter-spacing: 3px;
     }
 
-    .hero-divider {
-        margin-top: 14px;
-    }
 
-    .hero-divider::before,
-    .hero-divider::after {
-        width: 70px;
-    }
-
-    .hero-heart {
-        font-size: 18px;
-    }
-
-    .music-player {
-        bottom: 45px;
-
-        width: calc(100% - 30px);
-
-        padding: 18px 20px 20px;
-
-        border-radius: 25px;
-    }
-
-    .song-cover {
-        width: 65px;
-        height: 65px;
-    }
-
-    .song-title {
-        font-size: 17px;
-    }
-
-    .song-artist {
-        font-size: 12px;
-    }
-
-    .controls {
-        gap: 30px;
-    }
+    /* QUOTE */
 
     .quote {
         left: 20px;
-        bottom: 15px;
 
-        max-width: 230px;
+        bottom: 20px;
 
-        font-size: 13px;
-
-        line-height: 1.5;
+        display: none;
     }
 
-    .quote-author {
-        margin-top: 5px;
 
-        font-size: 12px;
+    /* PLAYER */
+
+    .music-player {
+        width: 330px;
+
+        max-width: 88vw;
+
+        bottom: 4%;
+
+        padding: 17px 19px 18px;
+
+        border-radius: 22px;
     }
+
+    .player-label {
+        font-size: 8px;
+
+        letter-spacing: 3px;
+
+        margin-bottom: 11px;
+    }
+
+    .song-cover {
+        width: 55px;
+
+        height: 55px;
+    }
+
+    .song-details h2 {
+        font-size: 15px;
+    }
+
+    .song-details p {
+        font-size: 11px;
+    }
+
+    .heart-btn {
+        font-size: 20px;
+    }
+
+    .controls {
+        gap: 23px;
+
+        margin: 11px 0;
+    }
+
+    .control-btn {
+        font-size: 16px;
+    }
+
+    .play-btn {
+        width: 44px;
+
+        height: 44px;
+
+        font-size: 15px;
+    }
+
+    .search-box input,
+    .search-box button {
+        height: 34px;
+    }
+
+    .playlist-item {
+        padding: 6px 8px;
+
+        font-size: 10px;
+    }
+
+
+    /* SIGNATURE */
 
     .signature {
         display: none;
@@ -1005,96 +972,29 @@ body.night .page::before {
 }
 
 
-/* =========================================================
-   SMALL PHONES
-   ========================================================= */
+/* =====================================================
+   VERY SMALL PHONES
+===================================================== */
 
-@media (max-width: 500px) {
-
-    .clock-container {
-        top: 18px;
-        left: 18px;
-    }
-
-    .theme-switch {
-        top: 15px;
-        right: 15px;
-    }
-
-    .hero {
-        top: 20%;
-    }
-
-    .hero-title {
-        font-size: 48px;
-    }
-
-    .hero-subtitle {
-        font-size: 9px;
-
-        letter-spacing: 2px;
-    }
+@media (max-width: 380px) {
 
     .music-player {
-        bottom: 30px;
-
-        width: calc(100% - 24px);
+        width: 300px;
 
         padding: 15px;
     }
 
-    .player-heading {
-        font-size: 9px;
-
-        letter-spacing: 3px;
-    }
-
     .song-cover {
-        width: 55px;
-        height: 55px;
+        width: 48px;
+
+        height: 48px;
     }
 
-    .song-title {
-        font-size: 15px;
+    .song-details h2 {
+        font-size: 14px;
     }
 
-    .song-artist {
-        font-size: 11px;
-    }
-
-    .favorite-btn {
-        font-size: 22px;
-    }
-
-    .controls {
-        gap: 25px;
-    }
-
-    .play-btn {
-        width: 52px;
-        height: 52px;
-    }
-
-    .search-container {
-        margin-top: 14px;
-    }
-
-    .search-input,
-    .search-btn {
-        height: 36px;
-    }
-
-    .search-input {
-        font-size: 11px;
-    }
-
-    .search-btn {
-        padding: 0 15px;
-
-        font-size: 11px;
-    }
-
-    .playlist {
-        max-height: 90px;
+    .intro h1 {
+        font-size: 37px;
     }
 }
