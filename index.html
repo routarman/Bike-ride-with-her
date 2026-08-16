@@ -1,144 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <meta name="theme-color" content="#111">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Long Drive With Her</title>
 
     <link rel="stylesheet" href="style.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- BACKGROUND -->
+<div class="page">
+
+    <!-- =========================
+         CLOCK
+    ========================== -->
+
+    <div class="clock">
+        <div class="clock-time" id="clockTime">
+            14:55:32
+        </div>
+
+        <div class="clock-line"></div>
+
+        <div class="clock-location">
+            INDIA · IST
+        </div>
+    </div>
+
+
+    <!-- =========================
+         DAY / NIGHT SWITCH
+    ========================== -->
+
+    <div class="theme-switch">
+
+        <button
+            class="theme-btn active"
+            id="dayBtn"
+            type="button"
+        >
+            <span>☀</span>
+            DAY
+        </button>
+
+        <button
+            class="theme-btn"
+            id="nightBtn"
+            type="button"
+        >
+            <span>☾</span>
+            NIGHT
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
     <main class="hero">
 
-        <!-- TOP LEFT CLOCK -->
-        <div class="clock">
-            <div id="time">00:00:00</div>
+        <h1 class="title">
+            LONG DRIVE
 
-            <div class="clock-line"></div>
+            <span class="title-italic">
+                WITH HER
+            </span>
+        </h1>
 
-            <span>INDIA · IST</span>
+
+        <div class="subtitle">
+            one road · two hearts · endless miles
         </div>
 
 
-        <!-- DAY / NIGHT -->
-        <div class="theme-switch">
-
-            <button id="dayBtn" class="theme-btn active">
-                ☀ <span>DAY</span>
-            </button>
-
-            <button id="nightBtn" class="theme-btn">
-                ☾ <span>NIGHT</span>
-            </button>
-
+        <div class="heart-line">
+            <span class="heart">♡</span>
         </div>
 
 
-        <!-- MAIN TITLE -->
-        <section class="intro">
+        <!-- =========================
+             MUSIC PLAYER
+        ========================== -->
 
-            <p class="eyebrow">
-                A JOURNEY MADE FOR TWO
-            </p>
-
-            <h1>
-                LONG DRIVE
-                <em>WITH HER</em>
-            </h1>
-
-            <div class="title-line">
-                <span></span>
-                <b>♡</b>
-                <span></span>
-            </div>
-
-            <p class="subtitle">
-                one road · two hearts · endless miles
-            </p>
-
-        </section>
-
-
-        <!-- QUOTE -->
-        <div class="quote">
-
-            <p>
-                “ कुछ रास्ते मंज़िल के लिए नहीं,<br>
-                किसी के साथ चलने के लिए होते हैं। ”
-            </p>
-
-            <span>— cinesutrachitra</span>
-
-        </div>
-
-
-        <!-- MUSIC PLAYER -->
-        <section class="music-player">
+        <div class="music-player">
 
             <div class="player-label">
                 NOW PLAYING
             </div>
 
 
-            <!-- SONG INFO -->
+            <!-- Song information -->
+
             <div class="song-info">
 
                 <img
-                    id="cover"
+                    id="songCover"
                     class="song-cover"
-                    src="assets/safranama.jpg"
+                    src="assets/song1.jpg"
                     alt="Song cover"
                 >
 
                 <div class="song-details">
 
-                    <h2 id="songTitle">
+                    <div
+                        class="song-name"
+                        id="songName"
+                    >
                         Safarnama
-                    </h2>
+                    </div>
 
-                    <p id="artist">
+                    <div
+                        class="artist-name"
+                        id="artistName"
+                    >
                         Lucky Ali
-                    </p>
+                    </div>
 
                 </div>
 
+
                 <button
-                    id="heartBtn"
-                    class="heart-btn"
-                    aria-label="Favorite">
+                    class="favorite-btn"
+                    id="favoriteBtn"
+                    type="button"
+                >
                     ♡
                 </button>
 
             </div>
 
 
-            <!-- PROGRESS -->
+            <!-- Progress -->
+
             <div class="progress-area">
 
-                <input
-                    id="progress"
-                    class="progress"
-                    type="range"
-                    min="0"
-                    max="100"
-                    value="0"
+                <div
+                    class="progress-bar"
+                    id="progressBar"
                 >
+
+                    <div
+                        class="progress"
+                        id="progress"
+                    ></div>
+
+                </div>
+
 
                 <div class="time-row">
 
@@ -155,78 +170,102 @@
             </div>
 
 
-            <!-- CONTROLS -->
+            <!-- Controls -->
+
             <div class="controls">
 
                 <button
-                    id="previousBtn"
                     class="control-btn"
-                    aria-label="Previous">
+                    id="previousBtn"
+                    type="button"
+                    aria-label="Previous song"
+                >
                     ⏮
                 </button>
 
+
                 <button
-                    id="playBtn"
                     class="play-btn"
-                    aria-label="Play">
+                    id="playBtn"
+                    type="button"
+                    aria-label="Play"
+                >
                     ▶
                 </button>
 
+
                 <button
-                    id="nextBtn"
                     class="control-btn"
-                    aria-label="Next">
+                    id="nextBtn"
+                    type="button"
+                    aria-label="Next song"
+                >
                     ⏭
                 </button>
 
             </div>
 
-
-            <!-- SEARCH -->
-            <div class="search-box">
-
-                <input
-                    id="searchInput"
-                    type="text"
-                    placeholder="Search a song..."
-                    autocomplete="off"
-                >
-
-                <button id="searchBtn">
-                    Search
-                </button>
-
-            </div>
-
-
-            <!-- PLAYLIST -->
-            <div class="playlist">
-
-                <div class="playlist-heading">
-                    ♫ Playlist
-                </div>
-
-                <div id="playlist"></div>
-
-            </div>
-
-        </section>
-
-
-        <!-- SIGNATURE -->
-        <div class="signature">
-            cinesutrachitra
-            <span></span>
         </div>
 
     </main>
 
 
-    <!-- AUDIO -->
-    <audio id="audio"></audio>
+    <!-- =========================
+         QUOTE
+    ========================== -->
+
+    <div class="quote">
+
+        <span class="quote-mark">
+            “
+        </span>
+
+        कुछ रास्ते मंज़िल के लिए नहीं,
+        <br>
+
+        किसी के साथ चलने के लिए होते हैं।
+
+        <span class="quote-mark">
+            ”
+        </span>
 
 
-    <script src="script.js"></script>
+        <span class="quote-author">
+            — cinesutrachitra
+        </span>
+
+    </div>
+
+
+    <!-- =========================
+         BOTTOM DECORATION
+    ========================== -->
+
+    <div class="bottom-decoration">
+        ⟳
+    </div>
+
+
+    <!-- =========================
+         SIGNATURE
+    ========================== -->
+
+    <div class="signature">
+        cinesutrachitra
+    </div>
+
+</div>
+
+
+<!-- Audio element -->
+
+<audio
+    id="audioPlayer"
+    preload="metadata"
+></audio>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
