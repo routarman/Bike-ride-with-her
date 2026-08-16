@@ -1,855 +1,1117 @@
-/* =========================================================
-   LONG DRIVE WITH HER
-   STYLE.CSS
-   ========================================================= */
-
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
+:root {
+  --cream: #f4ecd9;
+  --cream-dim: #d9cdb2;
+
+  --amber: #e3b46a;
+  --amber-soft: #c99a58;
+
+  --glass: rgba(10, 8, 6, 0.42);
+
+  --border: rgba(240, 220, 180, 0.38);
+}
+
 
 html,
 body {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  min-height: 100%;
 }
+
 
 body {
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    overflow: hidden;
-    background: #111;
-    color: #fff;
+  min-height: 100vh;
+
+  background: #080706;
+
+  color: var(--cream);
+
+  font-family: "Jost", sans-serif;
+
+  display: grid;
+  place-items: center;
+
+  padding: 18px;
+
+  overflow-x: hidden;
 }
 
-/* =========================================================
-   MAIN PAGE
-   ========================================================= */
 
-.page {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    min-height: 600px;
-    overflow: hidden;
-
-    background-image:
-        linear-gradient(
-            rgba(0, 0, 0, 0.30),
-            rgba(0, 0, 0, 0.30)
-        ),
-        url("assets/bike-day-desktop.png");
-
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
+button,
+input {
+  font: inherit;
 }
 
-/* =========================================================
-   DAY / NIGHT BACKGROUND
-   ========================================================= */
 
-body.night .page {
-    background-image:
-        linear-gradient(
-            rgba(0, 0, 0, 0.48),
-            rgba(0, 0, 0, 0.48)
-        ),
-        url("assets/bike-night-desktop.png");
+button {
+  color: inherit;
 }
 
-/* =========================================================
-   TOP LEFT CLOCK
-   ========================================================= */
 
-.clock {
-    position: absolute;
-    top: 45px;
-    left: 52px;
-    z-index: 10;
+/* =========================
+   MAIN POSTER
+========================= */
+
+.poster {
+  position: relative;
+
+  width: min(100%, 1400px);
+
+  min-height: min(92vh, 980px);
+
+  aspect-ratio: 15 / 11;
+
+  overflow: hidden;
+
+  border-radius: 6px;
+
+  isolation: isolate;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 8, 11, .08),
+      rgba(8, 6, 4, .42)
+    ),
+    url("assets/bike-day-desktop.png")
+    center / cover no-repeat;
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, .65);
+
+  transition:
+    background-image .45s ease,
+    filter .3s ease;
 }
 
-.clock-time {
-    font-family: "Courier New", monospace;
-    font-size: 29px;
-    font-weight: 400;
-    letter-spacing: 8px;
-    line-height: 1;
-    color: #fff;
+
+/* DARK OVERLAY */
+
+.poster::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -1;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.04) 0%,
+      rgba(0,0,0,.04) 34%,
+      rgba(0,0,0,.34) 70%,
+      rgba(0,0,0,.76) 100%
+    ),
+
+    radial-gradient(
+      ellipse 55% 75% at 50% 55%,
+      transparent 30%,
+      rgba(0,0,0,.35) 100%
+    );
+
+  pointer-events: none;
 }
 
-.clock-line {
-    width: 180px;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.8);
-    margin-top: 18px;
+
+.poster::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -1;
+
+  background:
+    rgba(255, 235, 200, .04);
+
+  pointer-events: none;
 }
 
-.clock-location {
-    margin-top: 15px;
-    font-size: 15px;
-    letter-spacing: 4px;
-    color: rgba(255, 255, 255, 0.9);
+
+/* NIGHT BACKGROUND */
+
+.poster.night {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(4,5,9,.20),
+      rgba(5,4,4,.50)
+    ),
+    url("assets/bike-night-desktop.png")
+    center / cover no-repeat;
 }
 
-/* =========================================================
-   DAY / NIGHT SWITCH
-   ========================================================= */
 
-.theme-switch {
-    position: absolute;
-    top: 45px;
-    right: 60px;
-    z-index: 20;
+/* =========================
+   MAIN CONTENT
+========================= */
 
-    display: flex;
-    align-items: center;
+.layer {
 
-    width: 285px;
-    height: 64px;
+  min-height: 100%;
 
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    border-radius: 40px;
+  min-height: min(92vh, 980px);
 
-    background: rgba(20, 20, 20, 0.28);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+  padding:
+    clamp(24px, 4vw, 56px);
 
-    overflow: hidden;
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
 }
 
-.theme-btn {
-    height: 54px;
-    border: none;
-    background: transparent;
 
-    color: #fff;
+/* =========================
+   TOP BAR
+========================= */
 
-    font-size: 15px;
-    letter-spacing: 3px;
+.top-bar {
 
-    cursor: pointer;
+  display: flex;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
+  justify-content: space-between;
 
-    transition: 0.3s ease;
+  align-items: flex-start;
+
+  gap: 20px;
 }
 
-.theme-btn:first-child {
-    width: 140px;
+
+/* CLOCK */
+
+.clock .time {
+
+  font-size:
+    clamp(20px, 2.5vw, 32px);
+
+  font-weight: 300;
+
+  letter-spacing: .18em;
+
+  white-space: nowrap;
 }
 
-.theme-btn:last-child {
-    width: 140px;
+
+.clock .rule {
+
+  width: 58px;
+
+  height: 1px;
+
+  margin: 7px 0;
+
+  background:
+    var(--cream-dim);
+
+  opacity: .65;
 }
 
-.theme-btn span {
-    font-size: 24px;
+
+.clock .locale {
+
+  font-size: 11px;
+
+  letter-spacing: .22em;
+
+  text-transform: uppercase;
+
+  color:
+    var(--cream-dim);
 }
 
-.theme-btn.active {
-    border: 2px solid rgba(255, 218, 151, 0.9);
-    border-radius: 35px;
 
-    background: rgba(255, 255, 255, 0.08);
+/* =========================
+   DAY NIGHT BUTTON
+========================= */
 
-    box-shadow:
-        0 0 12px rgba(255, 220, 160, 0.2);
+.toggle {
+
+  display: flex;
+
+  gap: 4px;
+
+  padding: 5px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 999px;
+
+  background:
+    rgba(12, 10, 8, .38);
+
+  backdrop-filter:
+    blur(12px);
 }
 
-/* =========================================================
-   CENTER CONTENT
-   ========================================================= */
+
+.toggle button {
+
+  border: 0;
+
+  background: transparent;
+
+  border-radius: 999px;
+
+  padding:
+    9px 18px;
+
+  cursor: pointer;
+
+  color:
+    var(--cream-dim);
+
+  letter-spacing: .14em;
+
+  font-size: 12px;
+
+  transition:
+    .25s ease;
+}
+
+
+.toggle button.active {
+
+  color: #241c10;
+
+  background:
+    linear-gradient(
+      180deg,
+      #efd8a6,
+      #c99a58
+    );
+}
+
+
+.icon {
+  margin-right: 7px;
+}
+
+
+/* =========================
+   HERO
+========================= */
 
 .hero {
-    position: absolute;
 
-    top: 29%;
-    left: 50%;
+  text-align: center;
 
-    transform: translateX(-50%);
-
-    width: 100%;
-    text-align: center;
-
-    z-index: 5;
+  margin-top:
+    clamp(20px, 3vw, 42px);
 }
 
-/* =========================================================
-   MAIN TITLE
-   ========================================================= */
 
-.title {
-    color: #fff;
+.eyebrow {
 
-    font-size: clamp(55px, 7vw, 96px);
+  margin-bottom: 10px;
 
-    font-weight: 300;
-    line-height: 0.95;
+  font-size: 11px;
 
-    letter-spacing: 2px;
+  letter-spacing: .34em;
 
-    text-shadow:
-        0 2px 10px rgba(0, 0, 0, 0.35);
+  color:
+    var(--cream-dim);
+
+  opacity: .78;
 }
 
-.title-italic {
-    display: block;
 
-    margin-top: 15px;
+.line1,
+.line2 {
 
-    font-family: Georgia, "Times New Roman", serif;
+  font-family:
+    "Playfair Display",
+    serif;
 
-    font-size: clamp(50px, 6vw, 82px);
-
-    font-style: italic;
-    font-weight: 400;
-
-    letter-spacing: 3px;
+  text-shadow:
+    0 4px 24px rgba(0,0,0,.65);
 }
 
-/* =========================================================
-   SUBTITLE
-   ========================================================= */
 
-.subtitle {
-    margin-top: 30px;
+.line1 {
 
-    font-size: 18px;
+  font-size:
+    clamp(42px, 6.8vw, 88px);
 
-    letter-spacing: 7px;
+  font-weight: 600;
 
-    color: rgba(255, 255, 255, 0.9);
+  letter-spacing: .04em;
 }
 
-/* =========================================================
-   DECORATIVE HEART LINE
-   ========================================================= */
 
-.heart-line {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.line2 {
 
-    gap: 20px;
+  margin-top: -8px;
 
-    margin-top: 18px;
+  font-size:
+    clamp(32px, 5vw, 64px);
+
+  font-style: italic;
+
+  font-weight: 500;
 }
 
-.heart-line::before,
-.heart-line::after {
-    content: "";
 
-    width: 205px;
-    height: 1px;
+/* DIVIDER */
 
-    background: rgba(255, 255, 255, 0.35);
+.divider {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin:
+    12px auto 8px;
+
+  color:
+    var(--amber);
+
+  font-size: 22px;
 }
 
-.heart {
-    color: #f6d59c;
 
-    font-size: 25px;
+.divider::before,
+.divider::after {
 
-    line-height: 1;
+  content: "";
+
+  width: 74px;
+
+  height: 1px;
+
+  background:
+    var(--cream-dim);
+
+  opacity: .45;
 }
 
-/* =========================================================
-   MUSIC PLAYER
-   ========================================================= */
 
-.music-player {
-    position: relative;
+.tagline {
 
-    width: 520px;
-    max-width: calc(100vw - 40px);
+  font-size:
+    clamp(12px, 1.4vw, 17px);
 
-    margin: 38px auto 0;
+  letter-spacing: .14em;
 
-    padding: 20px 28px 24px;
-
-    border: 1px solid rgba(255, 220, 170, 0.45);
-    border-radius: 30px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(30, 30, 30, 0.70),
-            rgba(0, 0, 0, 0.48)
-        );
-
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-
-    box-shadow:
-        0 15px 45px rgba(0, 0, 0, 0.35);
-
-    text-align: left;
+  color:
+    var(--cream-dim);
 }
 
-/* =========================================================
-   PLAYER LABEL
-   ========================================================= */
 
-.player-label {
-    position: absolute;
+/* =========================
+   PLAYER AREA
+========================= */
 
-    top: -14px;
-    left: 50%;
+.player-wrap {
 
-    transform: translateX(-50%);
+  display: flex;
 
-    padding: 0 14px;
+  justify-content: center;
 
-    background: transparent;
+  align-items: center;
 
-    font-size: 14px;
+  flex: 1;
 
-    letter-spacing: 4px;
-
-    white-space: nowrap;
-
-    color: #fff;
+  padding:
+    clamp(12px, 2vw, 28px) 0;
 }
 
-/* =========================================================
-   SONG INFORMATION
-   ========================================================= */
 
-.song-info {
-    display: flex;
+/* PLAYER */
 
-    align-items: center;
+.player {
 
-    gap: 22px;
+  width:
+    min(420px, 78vw);
+
+  padding:
+    22px 28px 20px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 22px;
+
+  background:
+    rgba(10, 8, 6, .40);
+
+  backdrop-filter:
+    blur(18px)
+    saturate(110%);
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.30);
 }
 
-.song-cover {
-    width: 92px;
-    height: 92px;
 
-    flex-shrink: 0;
+/* LABEL */
 
-    border-radius: 8px;
+.label {
 
-    object-fit: cover;
+  margin-bottom: 14px;
 
-    background: rgba(255, 255, 255, 0.1);
+  text-align: center;
+
+  font-size: 10px;
+
+  letter-spacing: .32em;
+
+  color:
+    var(--cream-dim);
+
+  opacity: .9;
 }
 
-.song-details {
-    flex: 1;
+
+/* =========================
+   SONG HEADER
+========================= */
+
+.track-head {
+
+  display: grid;
+
+  grid-template-columns:
+    76px 1fr 28px;
+
+  align-items: center;
+
+  gap: 14px;
 }
 
-.song-name {
-    font-size: 23px;
 
-    font-weight: 500;
+/* COVER */
 
-    letter-spacing: 0.5px;
+.cover-wrap {
 
-    color: #fff;
+  width: 76px;
+
+  height: 76px;
+
+  overflow: hidden;
+
+  border-radius: 9px;
+
+  background:
+    rgba(255,255,255,.08);
 }
 
-.artist-name {
-    margin-top: 10px;
 
-    font-size: 16px;
+.cover {
 
-    color: rgba(255, 255, 255, 0.8);
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
 }
 
-/* =========================================================
-   FAVORITE
-   ========================================================= */
 
-.favorite-btn {
-    width: 38px;
-    height: 38px;
+.cover-fallback {
 
-    border: none;
+  display: none;
 
-    background: transparent;
+  width: 100%;
 
-    color: #fff;
+  height: 100%;
 
-    font-size: 28px;
+  place-items: center;
 
-    cursor: pointer;
+  font-size: 28px;
 
-    transition: 0.25s ease;
+  color:
+    var(--cream);
 }
 
-.favorite-btn:hover {
-    transform: scale(1.1);
+
+/* SONG INFO */
+
+.track-meta .title {
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size: 21px;
+
+  font-weight: 600;
 }
 
-.favorite-btn.active {
-    color: #f4d29b;
+
+.track-meta .artist {
+
+  margin-top: 4px;
+
+  font-size: 12px;
+
+  letter-spacing: .06em;
+
+  color:
+    var(--cream-dim);
 }
 
-/* =========================================================
-   PROGRESS BAR
-   ========================================================= */
 
-.progress-area {
-    margin-top: 20px;
+/* LIKE */
+
+.like-btn {
+
+  border: 0;
+
+  background: transparent;
+
+  font-size: 25px;
+
+  cursor: pointer;
+
+  color:
+    var(--cream-dim);
+
+  transition:
+    transform .2s ease,
+    color .2s ease;
 }
 
-.progress-bar {
-    position: relative;
 
-    width: 100%;
-    height: 3px;
+.like-btn.liked {
 
-    border-radius: 5px;
+  color:
+    var(--amber);
 
-    background: rgba(255, 255, 255, 0.25);
-
-    cursor: pointer;
+  transform:
+    scale(1.08);
 }
+
+
+/* =========================
+   PROGRESS
+========================= */
 
 .progress {
-    position: absolute;
 
-    left: 0;
-    top: 0;
-
-    width: 25%;
-    height: 100%;
-
-    border-radius: 5px;
-
-    background: #f7e2b8;
+  margin-top: 22px;
 }
 
-.progress::after {
-    content: "";
 
-    position: absolute;
+.progress input[type="range"],
+.volume-row input[type="range"] {
 
-    right: -6px;
-    top: 50%;
+  width: 100%;
 
-    transform: translateY(-50%);
+  accent-color:
+    var(--amber);
 
-    width: 12px;
-    height: 12px;
-
-    border-radius: 50%;
-
-    background: #fff;
-
-    box-shadow:
-        0 0 8px rgba(255, 255, 255, 0.7);
+  cursor: pointer;
 }
 
-.time-row {
-    display: flex;
 
-    justify-content: space-between;
+.times {
 
-    margin-top: 8px;
+  display: flex;
 
-    font-size: 12px;
+  justify-content: space-between;
 
-    color: rgba(255, 255, 255, 0.85);
+  margin-top: 6px;
+
+  font-size: 10px;
+
+  color:
+    var(--cream-dim);
+
+  opacity: .82;
 }
 
-/* =========================================================
-   PLAYER CONTROLS
-   ========================================================= */
+
+/* =========================
+   CONTROLS
+========================= */
 
 .controls {
-    display: flex;
 
-    align-items: center;
-    justify-content: center;
+  display: flex;
 
-    gap: 45px;
+  align-items: center;
 
-    margin-top: 14px;
+  justify-content: center;
+
+  gap: 30px;
+
+  margin-top: 14px;
 }
 
-.control-btn {
-    border: none;
 
-    background: transparent;
+.controls button {
 
-    color: #fff;
+  border: 0;
 
-    font-size: 23px;
+  background: transparent;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition: 0.25s ease;
+  font-size: 18px;
+
+  opacity: .9;
+
+  transition:
+    transform .2s ease,
+    opacity .2s ease;
 }
 
-.control-btn:hover {
-    transform: scale(1.12);
+
+.controls button:hover {
+
+  opacity: 1;
+
+  transform:
+    scale(1.08);
 }
 
-.play-btn {
-    width: 60px;
-    height: 60px;
 
-    border: 2px solid #f4d9a7;
+/* PLAY BUTTON */
 
-    border-radius: 50%;
+.controls .play {
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 46px;
 
-    background: rgba(255, 255, 255, 0.03);
+  height: 46px;
 
-    color: #fff;
+  display: grid;
 
-    font-size: 22px;
+  place-items: center;
 
-    cursor: pointer;
+  border:
+    1px solid var(--cream);
 
-    transition: 0.25s ease;
+  border-radius: 50%;
+
+  font-size: 17px;
 }
 
-.play-btn:hover {
-    background: rgba(255, 255, 255, 0.12);
 
-    transform: scale(1.05);
+/* =========================
+   VOLUME
+========================= */
+
+.volume-row {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin-top: 14px;
+
+  color:
+    var(--cream-dim);
+
+  font-size: 13px;
 }
 
-/* =========================================================
-   QUOTE
-   ========================================================= */
+
+/* =========================
+   PLAYLIST
+========================= */
+
+.playlist-head {
+
+  margin-top: 16px;
+
+  margin-bottom: 7px;
+
+  font-size: 11px;
+
+  letter-spacing: .04em;
+}
+
+
+.playlist {
+
+  list-style: none;
+
+  max-height: 110px;
+
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+}
+
+
+.playlist li {
+
+  padding:
+    7px 9px;
+
+  border-radius: 7px;
+
+  display: grid;
+
+  grid-template-columns:
+    26px 1fr auto;
+
+  gap: 7px;
+
+  align-items: center;
+
+  font-size: 12px;
+
+  color:
+    var(--cream-dim);
+
+  cursor: pointer;
+
+  transition: .2s ease;
+}
+
+
+.playlist li:hover,
+.playlist li.active {
+
+  background:
+    rgba(239, 216, 166, .18);
+
+  color:
+    var(--cream);
+}
+
+
+.playlist .num {
+  opacity: .7;
+}
+
+
+.playlist .duration {
+
+  font-size: 10px;
+
+  opacity: .65;
+}
+
+
+/* =========================
+   AUDIO NOTE
+========================= */
+
+.audio-note {
+
+  margin-top: 10px;
+
+  font-size: 9px;
+
+  line-height: 1.4;
+
+  text-align: center;
+
+  color:
+    var(--cream-dim);
+
+  opacity: .7;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-end;
+
+  gap: 24px;
+
+  padding-top: 14px;
+}
+
 
 .quote {
-    position: absolute;
 
-    left: 52px;
-    bottom: 112px;
+  max-width: 390px;
 
-    width: 360px;
+  font-family:
+    "Cormorant Garamond",
+    serif;
 
-    z-index: 10;
+  font-style: italic;
 
-    color: #f1d39a;
+  font-size:
+    clamp(15px, 1.7vw, 20px);
 
-    font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.4;
 
-    font-size: 20px;
-
-    line-height: 1.8;
-
-    text-align: left;
+  text-shadow:
+    0 2px 14px rgba(0,0,0,.6);
 }
 
-.quote-mark {
-    font-size: 30px;
+
+.accent {
+
+  color:
+    var(--amber);
+
+  font-style: normal;
 }
 
-.quote-author {
-    display: block;
 
-    margin-top: 14px;
+.attribution {
 
-    font-size: 18px;
+  display: block;
 
-    font-style: italic;
+  margin-top: 7px;
 
-    color: #f1d39a;
+  color:
+    var(--amber-soft);
+
+  font-size: 14px;
 }
 
-/* =========================================================
-   BOTTOM LEFT DECORATION
-   ========================================================= */
 
-.bottom-decoration {
-    position: absolute;
+/* REPLAY */
 
-    left: 270px;
-    bottom: 65px;
+.replay {
 
-    width: 65px;
-    height: 65px;
+  width: 30px;
 
-    border: 1px solid rgba(242, 205, 139, 0.5);
+  height: 30px;
 
-    border-radius: 50%;
+  margin-left: 8px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  border:
+    1px solid var(--border);
 
-    color: #f1d39a;
+  border-radius: 50%;
 
-    font-size: 27px;
+  background:
+    rgba(0,0,0,.16);
 
-    z-index: 10;
+  cursor: pointer;
 
-    background: rgba(0, 0, 0, 0.15);
-
-    backdrop-filter: blur(5px);
+  color:
+    var(--cream-dim);
 }
 
-/* =========================================================
-   SIGNATURE
-   ========================================================= */
+
+/* SIGNATURE */
 
 .signature {
-    position: absolute;
 
-    right: 70px;
-    bottom: 50px;
+  font-family:
+    "Cormorant Garamond",
+    serif;
 
-    z-index: 10;
+  font-style: italic;
 
-    color: #e6bd70;
+  font-size: 20px;
 
-    font-family: Georgia, "Times New Roman", serif;
-
-    font-size: 24px;
-
-    font-style: italic;
-
-    letter-spacing: 1px;
+  color:
+    var(--amber);
 }
 
-.signature::after {
-    content: "";
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 760px) {
+
+  body {
+
+    padding: 0;
 
     display: block;
+  }
 
-    width: 150px;
 
-    height: 1px;
+  .poster {
+
+    width: 100%;
+
+    min-height: 100svh;
+
+    aspect-ratio: auto;
+
+    border-radius: 0;
+
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(5, 8, 11, .08),
+        rgba(8, 6, 4, .55)
+      ),
+      url("assets/bike-day-mobile.png");
+  }
+
+
+  .poster.night {
+
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(4,5,9,.20),
+        rgba(5,4,4,.60)
+      ),
+      url("assets/bike-night-mobile.png");
+  }
+
+
+  .layer {
+
+    min-height: 100svh;
+
+    padding:
+      22px 18px;
+  }
+
+
+  .top-bar {
+
+    align-items: flex-start;
+  }
+
+
+  .toggle button {
+
+    padding:
+      8px 11px;
+  }
+
+
+  .hero {
+
+    margin-top: 20px;
+  }
+
+
+  .line1 {
+
+    font-size:
+      clamp(38px, 12vw, 58px);
+  }
+
+
+  .line2 {
+
+    font-size:
+      clamp(30px, 9vw, 46px);
+  }
+
+
+  .tagline {
+
+    letter-spacing: .08em;
+  }
+
+
+  .player {
+
+    width:
+      min(360px, 92vw);
+
+    padding:
+      18px 18px 16px;
+  }
+
+
+  .track-head {
+
+    grid-template-columns:
+      62px 1fr 26px;
+
+    gap: 10px;
+  }
+
+
+  .cover-wrap {
+
+    width: 62px;
+
+    height: 62px;
+  }
+
+
+  .footer {
+
+    align-items:
+      flex-start;
+  }
+
+
+  .signature {
+
+    display: none;
+  }
+
+}
+
+
+/* =========================
+   SHORT DESKTOP SCREENS
+========================= */
+
+@media
+(max-height: 700px)
+and
+(min-width: 761px) {
+
+  .layer {
+
+    padding:
+      20px 34px;
+  }
+
+
+  .hero {
 
     margin-top: 5px;
+  }
 
-    background: #e6bd70;
-}
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
+  .line1 {
 
-@media (max-width: 900px) {
+    font-size: 52px;
+  }
 
-    .page {
-        background-image:
-            linear-gradient(
-                rgba(0, 0, 0, 0.32),
-                rgba(0, 0, 0, 0.32)
-            ),
-            url("assets/bike-day-mobile.png");
 
-        background-position: center center;
-    }
+  .line2 {
 
-    body.night .page {
-        background-image:
-            linear-gradient(
-                rgba(0, 0, 0, 0.48),
-                rgba(0, 0, 0, 0.48)
-            ),
-            url("assets/bike-night-mobile.png");
-    }
+    font-size: 40px;
+  }
 
-    .clock {
-        top: 22px;
-        left: 22px;
-    }
 
-    .clock-time {
-        font-size: 18px;
-        letter-spacing: 4px;
-    }
+  .player-wrap {
 
-    .clock-line {
-        width: 120px;
-        margin-top: 10px;
-    }
+    padding: 4px 0;
+  }
 
-    .clock-location {
-        font-size: 10px;
-        letter-spacing: 3px;
-        margin-top: 9px;
-    }
 
-    .theme-switch {
-        top: 20px;
-        right: 20px;
+  .player {
 
-        width: 170px;
-        height: 48px;
-    }
+    padding:
+      15px 22px;
+  }
 
-    .theme-btn {
-        font-size: 10px;
-        letter-spacing: 1.5px;
-        gap: 5px;
-        height: 42px;
-    }
 
-    .theme-btn:first-child,
-    .theme-btn:last-child {
-        width: 85px;
-    }
+  .footer {
 
-    .theme-btn span {
-        font-size: 16px;
-    }
+    padding-top: 5px;
+  }
 
-    .hero {
-        top: 22%;
-    }
-
-    .title {
-        font-size: 48px;
-        letter-spacing: 1px;
-    }
-
-    .title-italic {
-        font-size: 43px;
-        margin-top: 8px;
-    }
-
-    .subtitle {
-        margin-top: 18px;
-        font-size: 11px;
-        letter-spacing: 3px;
-    }
-
-    .heart-line {
-        margin-top: 12px;
-        gap: 10px;
-    }
-
-    .heart-line::before,
-    .heart-line::after {
-        width: 75px;
-    }
-
-    .heart {
-        font-size: 18px;
-    }
-
-    .music-player {
-        width: 340px;
-        margin-top: 25px;
-
-        padding: 16px 18px 18px;
-
-        border-radius: 22px;
-    }
-
-    .song-cover {
-        width: 65px;
-        height: 65px;
-    }
-
-    .song-info {
-        gap: 13px;
-    }
-
-    .song-name {
-        font-size: 17px;
-    }
-
-    .artist-name {
-        margin-top: 5px;
-        font-size: 12px;
-    }
-
-    .favorite-btn {
-        font-size: 22px;
-    }
-
-    .controls {
-        gap: 28px;
-    }
-
-    .play-btn {
-        width: 48px;
-        height: 48px;
-        font-size: 17px;
-    }
-
-    .control-btn {
-        font-size: 18px;
-    }
-
-    .quote {
-        left: 22px;
-        bottom: 55px;
-
-        width: 280px;
-
-        font-size: 14px;
-
-        line-height: 1.6;
-    }
-
-    .quote-author {
-        font-size: 14px;
-        margin-top: 8px;
-    }
-
-    .bottom-decoration {
-        display: none;
-    }
-
-    .signature {
-        right: 22px;
-        bottom: 22px;
-        font-size: 16px;
-    }
-
-    .signature::after {
-        width: 100px;
-    }
-}
-
-/* =========================================================
-   SMALL MOBILE
-   ========================================================= */
-
-@media (max-width: 500px) {
-
-    .theme-switch {
-        width: 145px;
-    }
-
-    .theme-btn:first-child,
-    .theme-btn:last-child {
-        width: 72px;
-    }
-
-    .hero {
-        top: 20%;
-    }
-
-    .title {
-        font-size: 39px;
-    }
-
-    .title-italic {
-        font-size: 35px;
-    }
-
-    .subtitle {
-        font-size: 9px;
-        letter-spacing: 2px;
-    }
-
-    .music-player {
-        width: 300px;
-    }
-
-    .quote {
-        width: 230px;
-        font-size: 12px;
-    }
 }
